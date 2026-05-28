@@ -4,6 +4,7 @@ const packages = [
     id: "lanzar",
     name: "Lanzar",
     price: "$600",
+    priceLabel: "Desde · sin IVA",
     delivery: "2-3 sem",
     headline: "Landing page profesional",
     body: "Vos tenés una idea y necesitás presencia online ya. Sitio responsive, SEO básico, hosting y dominio incluidos.",
@@ -21,6 +22,7 @@ const packages = [
     id: "crecer",
     name: "Crecer",
     price: "$1.500",
+    priceLabel: "Desde · sin IVA",
     delivery: "4-8 sem",
     headline: "Web completa o app móvil",
     body: "Tu negocio ya rueda. Necesitás web multi-página con CMS o app móvil con backend. Soporte 1 mes incluido.",
@@ -39,19 +41,22 @@ const packages = [
   {
     id: "escalar",
     name: "Escalar",
-    price: "$3.500",
-    delivery: "8-14 sem",
-    headline: "Producto con arquitectura sólida",
-    body: "App web o móvil con backend, auth, panel admin e integraciones. Arquitectura pensada desde día 1 para crecer.",
+    price: "Bajo cotización",
+    priceLabel: "Cotización a medida",
+    delivery: "Según scope",
+    headline: "Producto serio + integraciones modernas",
+    body: "Cuando el proyecto crece y necesita arquitectura real. App web o móvil con backend, integraciones con IA, tiempo real y todo lo que un producto serio necesita para escalar.",
     features: [
-      "App web o móvil completa con backend",
-      "Auth, panel admin, integraciones",
-      "Clean architecture · SOLID · DRY",
+      "App web o móvil completa con backend a medida",
+      "Integraciones con IA: LLMs, RAG, agentes, embeddings",
+      "Tiempo real con websockets + live updates",
+      "Pagos online (Stripe, SINPE, PayPal)",
+      "Auth, paneles admin, multi-tenancy",
+      "Clean architecture · SOLID · DRY · CI/CD",
       "3 meses de soporte post-entrega",
-      "Entrega 8-14 semanas",
     ],
-    cta: "Vamos por Escalar",
-    href: "https://wa.me/50685082921?text=¡Hola, Jonathan! Me interesa el paquete Escalar.",
+    cta: "Hablemos del scope",
+    href: "https://wa.me/50685082921?text=¡Hola, Jonathan! Quiero hablar de un proyecto a medida (Escalar).",
     highlighted: false,
   },
 ];
@@ -111,8 +116,8 @@ const packages = [
 
           <div class="mb-6">
             <div
-              class="font-display tabular-nums leading-none"
-              style={`font-size: clamp(2.5rem, 4vw, 3rem); letter-spacing: -0.04em; color: ${pkg.highlighted ? 'var(--color-bg)' : 'var(--color-text)'};`}
+              class={`font-display leading-none ${pkg.price.startsWith('$') ? 'tabular-nums' : ''}`}
+              style={`font-size: ${pkg.price.startsWith('$') ? 'clamp(2.5rem, 4vw, 3rem)' : 'clamp(1.5rem, 2.4vw, 1.875rem)'}; letter-spacing: -0.04em; color: ${pkg.highlighted ? 'var(--color-bg)' : 'var(--color-text)'};`}
             >
               {pkg.price}
             </div>
@@ -120,7 +125,7 @@ const packages = [
               class="label mt-2"
               style={`color: ${pkg.highlighted ? 'rgba(14,14,16,0.65)' : 'var(--color-text-mute)'};`}
             >
-              Desde · sin IVA
+              {pkg.priceLabel}
             </div>
           </div>
 
