@@ -1,0 +1,63 @@
+---
+const steps = [
+  {
+    n: "01",
+    title: "Conversación",
+    body: "Antes de tocar código, entendemos qué necesita tu negocio. Una llamada para conocer el problema real: qué resolvés, para quién, qué cuenta como éxito. Si no soy el indicado, te lo digo de una.",
+  },
+  {
+    n: "02",
+    title: "Prototipo",
+    body: "Una versión navegable rápido, antes de invertir semanas. Maquetas o prototipo funcional para validar dirección. Iteramos hasta que el qué esté claro. Esto ahorra cambios caros después.",
+  },
+  {
+    n: "03",
+    title: "Desarrollo",
+    body: "Te muestro el avance, no solo el resultado final. Avances visibles y constantes durante toda la fase. Tu feedback en cualquier momento. Si algo se sale de scope, lo conversamos antes de seguir.",
+  },
+  {
+    n: "04",
+    title: "Entrega + soporte",
+    body: "Producto en producción, documentado, y 100% tuyo. Deploy, documentación y walkthrough técnico. El código es tuyo desde día uno. Soporte post-entrega en los paquetes Crecer y Escalar.",
+  },
+];
+---
+
+<section id="proceso" class="border-b" style="border-color: var(--color-line); background-color: var(--color-surface);">
+  <div class="container-x py-20 md:py-28">
+    <div class="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-16 mb-14 md:mb-20">
+      <div class="reveal">
+        <div class="label mb-4">Cómo trabajo</div>
+        <h2 class="display-xl" style="color: var(--color-text);">
+          Un proceso que respeta<br />
+          tu <span class="mark-accent">tiempo</span> y tu plata.
+        </h2>
+      </div>
+      <p
+        class="reveal reveal-d1 text-[1.0625rem] leading-relaxed self-end max-w-[52ch]"
+        style="color: var(--color-text-mute);"
+      >
+        Cuatro pasos. Cero sorpresas. Antes de empezar sabés qué se entrega, cuándo y qué cuesta. Después, mantenimiento opcional.
+      </p>
+    </div>
+
+    <ol class="grid gap-px md:grid-cols-2 lg:grid-cols-4 surface overflow-hidden">
+      {steps.map((step, i) => (
+        <li class={`p-7 md:p-8 reveal reveal-d${i + 1}`} style="background-color: var(--color-surface);">
+          <div
+            class="font-display tabular-nums leading-none mb-7"
+            style="font-size: 2.5rem; letter-spacing: -0.04em; color: var(--color-accent);"
+          >
+            {step.n}
+          </div>
+          <h3 class="display-l mb-4" style="font-size: 1.25rem; color: var(--color-text);">
+            {step.title}
+          </h3>
+          <p class="text-[0.875rem] leading-relaxed" style="color: var(--color-text-mute);">
+            {step.body}
+          </p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

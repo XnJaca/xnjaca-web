@@ -1,0 +1,115 @@
+---
+import type { Dict } from '../i18n/utils';
+
+interface Props {
+  t: Dict;
+}
+
+const { t } = Astro.props;
+
+const packages = [
+  {
+    key: 'launch' as const,
+    featured: false,
+    data: t.packages.launch,
+  },
+  {
+    key: 'grow' as const,
+    featured: true,
+    data: t.packages.grow,
+  },
+  {
+    key: 'scale' as const,
+    featured: false,
+    data: t.packages.scale,
+  },
+];
+---
+
+<section id="services" class="container-app py-16 md:py-20 border-t" style="border-color: var(--border-color);">
+  <div class="flex flex-wrap items-baseline justify-between gap-4 mb-10 reveal-on-scroll">
+    <div>
+      <div class="text-[11px] uppercase tracking-widest mb-1.5" style="color: var(--text-tertiary);">
+        {t.packages.sectionNumber}
+      </div>
+      <h2 class="font-medium tracking-tight" style="font-size: clamp(1.5rem, 3vw, 1.75rem); color: var(--text-primary);">
+        {t.packages.title}
+      </h2>
+    </div>
+    <p class="text-xs" style="color: var(--text-secondary);">
+      {t.packages.customCta}{' '}
+      <a href="#contact" class="underline transition-opacity hover:opacity-70" style="color: var(--text-primary);">
+        {t.packages.customLink}
+      </a>
+    </p>
+  </div>
+
+  <div class="grid gap-3 md:grid-cols-3">
+    {packages.map((pkg, i) => {
+      const delayClass = `reveal-delay-${i + 1}`;
+      if (pkg.featured) {
+        return (
+          <div
+            class={`relative rounded-xl p-5 reveal-on-scroll ${delayClass} transition-transform duration-300 hover:-translate-y-1`}
+            style="background-color: var(--text-primary); color: var(--bg-primary);"
+          >
+            <span
+              class="absolute -top-2.5 left-4 rounded px-2 py-0.5 text-[10px] font-medium"
+              style="background-color: #E8B547; color: #0E0E0E;"
+            >
+              {t.packages.mostChosen}
+            </span>
+            <div class="text-[11px] uppercase tracking-widest mb-3" style="color: #E8B547;">
+              {pkg.data.name}
+            </div>
+            <p class="pkg-featured-muted text-[13px] leading-relaxed mb-5">
+              {pkg.data.description}
+            </p>
+            <div class="text-[11px] mb-1 opacity-60">{t.packages.from}</div>
+            <div class="text-[30px] font-medium tracking-tight leading-none mb-5">
+              {pkg.data.price}
+            </div>
+            <ul class="pkg-featured-muted flex flex-col gap-1.5 text-xs">
+              {pkg.data.features.map((feature) => (
+                <li class="flex items-start gap-1.5">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E8B547" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      }
+
+      return (
+        <div
+          class={`rounded-xl border p-5 reveal-on-scroll ${delayClass} transition-all duration-300 hover:-translate-y-1`}
+          style="background-color: var(--bg-secondary); border-color: var(--border-color);"
+        >
+          <div class="text-[11px] uppercase tracking-widest mb-3" style="color: var(--text-tertiary);">
+            {pkg.data.name}
+          </div>
+          <p class="text-[13px] leading-relaxed mb-5" style="color: var(--text-secondary);">
+            {pkg.data.description}
+          </p>
+          <div class="text-[11px] mb-1" style="color: var(--text-tertiary);">{t.packages.from}</div>
+          <div class="text-[30px] font-medium tracking-tight leading-none mb-5" style="color: var(--text-primary);">
+            {pkg.data.price}
+          </div>
+          <ul class="flex flex-col gap-1.5 text-xs" style="color: var(--text-secondary);">
+            {pkg.data.features.map((feature) => (
+              <li class="flex items-start gap-1.5">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+    })}
+  </div>
+</section>

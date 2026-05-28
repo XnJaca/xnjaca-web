@@ -1,0 +1,24 @@
+---
+import type { Dict } from '../i18n/utils';
+
+interface Props {
+  t: Dict;
+}
+
+const { t } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="container-app py-10 mt-10 border-t" style="border-color: var(--border-color);">
+  <div class="flex flex-wrap items-center justify-between gap-4 text-xs" style="color: var(--text-tertiary);">
+    <div>© {year} Jonathan Cruz Ayala · {t.footer.rights}</div>
+    <div class="flex items-center gap-4">
+      <a href="https://linkedin.com/in/xnjaca" target="_blank" rel="noopener" class="hover:opacity-100 opacity-70 transition-opacity">
+        LinkedIn
+      </a>
+      <a href="mailto:xnjaca@gmail.com" class="hover:opacity-100 opacity-70 transition-opacity">
+        Email
+      </a>
+    </div>
+  </div>
+</footer>

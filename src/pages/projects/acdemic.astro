@@ -1,0 +1,9 @@
+---
+import ProjectPage from '../../components/ProjectPage.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const lang = 'es' as const;
+const t = useTranslations(lang);
+---
+
+<ProjectPage project={t.projectPages.pages.acdemic} lang={lang} t={t} />

@@ -1,0 +1,129 @@
+---
+import HeroHighlight from './HeroHighlight.tsx';
+import type { Dict } from '../i18n/utils';
+import { showPackages } from '../utils/flags';
+
+interface Props {
+  t: Dict;
+}
+
+const { t } = Astro.props;
+---
+
+<section class="container-x relative pt-14 md:pt-20 pb-20 md:pb-28">
+  <div class="grid gap-12 lg:grid-cols-[1.55fr_1fr] lg:gap-16 lg:items-end">
+    <div>
+      <div class="flex items-center gap-3 reveal mb-7">
+        <span class="relative flex h-2 w-2">
+          <span
+            class="absolute inline-flex h-full w-full rounded-full opacity-70 animate-ping"
+            style="background-color: var(--color-success);"
+          ></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full" style="background-color: var(--color-success);"></span>
+        </span>
+        <span class="label" style="color: var(--color-text-mute);">
+          Disponible · respondo en {`<`} 24 h
+        </span>
+      </div>
+
+      <h1
+        class="reveal reveal-d1 display-mega"
+        style="color: var(--color-text); max-width: 16ch;"
+      >
+        ¿Tu negocio necesita un{' '}
+        <HeroHighlight client:load word="software" />
+        {' '}a la medida?
+      </h1>
+
+      <p
+        class="reveal reveal-d2 mt-9 max-w-[58ch]"
+        style="font-size: 1.25rem; line-height: 1.45; color: var(--color-text);"
+      >
+        Soy Jonathan, dev full-stack en Costa Rica. Apps móviles, sitios web y sistemas a medida para empresas, founders y emprendedores. <strong style="color: var(--color-text); font-weight: 600;">Escribime y arrancamos.</strong>
+      </p>
+
+      <div class="reveal reveal-d3 mt-10 flex flex-wrap items-center gap-3">
+        <a
+          href="https://wa.me/50685082921?text=¡Hola, Jonathan! Vi tu sitio y quería conversar sobre un proyecto."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-wa"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.002-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+          </svg>
+          Conversemos por WhatsApp
+        </a>
+        {showPackages ? (
+          <a href="#paquetes" class="btn-ghost">
+            Ver paquetes
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+          </a>
+        ) : (
+          <a href="#proyectos" class="btn-ghost">
+            Ver trabajo reciente
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+          </a>
+        )}
+      </div>
+    </div>
+
+    <aside class="reveal reveal-d2 lg:pb-3 self-end">
+      <div class="surface p-6 md:p-7">
+        <div class="label mb-4">Ahora</div>
+        <p class="text-[1.0625rem] leading-relaxed mb-5" style="color: var(--color-text);">
+          Construyendo <span style="color: var(--color-gold); font-weight: 600;">ACDEMIC</span> — SaaS EdTech para docentes del MEP en Costa Rica.
+        </p>
+        <div class="flex items-center justify-between pt-4 border-t" style="border-color: var(--color-line);">
+          <div>
+            <div class="font-mono text-[0.7rem] uppercase tracking-widest" style="color: var(--color-text-mute);">San José</div>
+            <div class="font-mono text-[0.75rem]" style="color: var(--color-text-mute);">GMT-6 · Mayo 2026</div>
+          </div>
+          <a href="https://acdemic.com" target="_blank" rel="noopener noreferrer" class="text-[0.78rem] inline-flex items-center gap-1.5" style="color: var(--color-gold);">
+            acdemic.com
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div
+    class="reveal reveal-d4 mt-16 md:mt-24 grid grid-cols-2 md:grid-cols-4 gap-px border-t pt-8"
+    style="border-color: var(--color-line);"
+  >
+    <div>
+      <div class="font-display tabular-nums leading-none" style="font-size: clamp(1.875rem, 3vw, 2.5rem); letter-spacing: -0.04em; color: var(--color-text);">
+        4<span style="color: var(--color-accent);">+</span>
+      </div>
+      <div class="mt-2 label">años en producción</div>
+    </div>
+    <div>
+      <div class="font-display tabular-nums leading-none" style="font-size: clamp(1.875rem, 3vw, 2.5rem); letter-spacing: -0.04em; color: var(--color-text);">
+        12<span style="color: var(--color-accent);">+</span>
+      </div>
+      <div class="mt-2 label">proyectos entregados</div>
+    </div>
+    <div>
+      <div class="font-display tabular-nums leading-none" style="font-size: clamp(1.875rem, 3vw, 2.5rem); letter-spacing: -0.04em; color: var(--color-text);">
+        1
+      </div>
+      <div class="mt-2 label">SaaS propio</div>
+    </div>
+    <div>
+      <div class="font-display leading-none" style="font-size: clamp(1.875rem, 3vw, 2.5rem); letter-spacing: -0.04em; color: var(--color-text);">
+        2-14<span style="color: var(--color-accent);">sem</span>
+      </div>
+      <div class="mt-2 label">entrega típica</div>
+    </div>
+  </div>
+</section>

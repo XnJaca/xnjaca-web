@@ -1,0 +1,62 @@
+---
+import type { Dict } from '../i18n/utils';
+
+interface Props {
+  t: Dict;
+}
+
+const { t } = Astro.props;
+
+const items = [
+  { key: 'companies' as const, data: t.audiences.items.companies },
+  { key: 'founders' as const, data: t.audiences.items.founders },
+  { key: 'directClients' as const, data: t.audiences.items.directClients },
+];
+---
+
+<section id="audiences" class="container-app py-16 md:py-20 border-t" style="border-color: var(--border-color);">
+  <div class="grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-end mb-12 reveal-on-scroll">
+    <div>
+      <div class="text-[11px] uppercase tracking-widest mb-1.5" style="color: var(--text-tertiary);">
+        {t.audiences.sectionNumber}
+      </div>
+      <h2
+        class="font-medium tracking-tight"
+        style="font-size: clamp(1.75rem, 3.4vw, 2.25rem); letter-spacing: -0.02em; color: var(--text-primary);"
+      >
+        {t.audiences.title}
+      </h2>
+    </div>
+  </div>
+
+  <div class="grid gap-3 md:grid-cols-3">
+    {items.map((item, i) => {
+      const delayClass = `reveal-delay-${(i % 4) + 1}`;
+      return (
+        <article
+          class={`flex flex-col rounded-xl border p-6 reveal-on-scroll ${delayClass} transition-all duration-300 hover:-translate-y-1`}
+          style="background-color: var(--bg-secondary); border-color: var(--border-color);"
+        >
+          <div class="text-[11px] uppercase tracking-widest mb-5" style="color: var(--text-tertiary);">
+            {item.data.label}
+          </div>
+          <h3
+            class="font-medium leading-snug tracking-tight"
+            style="font-size: clamp(1.05rem, 1.7vw, 1.25rem); letter-spacing: -0.015em; color: var(--text-primary);"
+          >
+            {item.data.headline}
+          </h3>
+          <p class="mt-4 text-[13px] leading-relaxed" style="color: var(--text-secondary);">
+            {item.data.body}
+          </p>
+          <div
+            class="mt-6 pt-5 border-t text-[11px] leading-relaxed"
+            style="border-color: var(--border-color); color: var(--text-tertiary);"
+          >
+            {item.data.tag}
+          </div>
+        </article>
+      );
+    })}
+  </div>
+</section>

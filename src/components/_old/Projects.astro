@@ -1,0 +1,138 @@
+---
+import type { Dict, Lang } from '../i18n/utils';
+
+interface Props {
+  t: Dict;
+  lang: Lang;
+}
+
+const { t, lang } = Astro.props;
+const base = lang === 'es' ? '' : '/en';
+const viewAllHref = `${base}/projects/`;
+const confidentialLabel = t.projectPages.index.confidentialLabel;
+
+const items = [
+  { key: 'acdemic' as const, data: t.projects.items.acdemic, href: `${base}/projects/acdemic` },
+  { key: 'professionalConstruction' as const, data: t.projects.items.professionalConstruction, href: `${base}/projects/professional-construction` },
+  { key: 'livingstoneContractors' as const, data: t.projects.items.livingstoneContractors, href: `${base}/projects/livingstone-contractors` },
+  { key: 'netfic' as const, data: t.projects.items.netfic, href: `${base}/projects/netfic` },
+  { key: 'walmart' as const, data: t.projects.items.walmart, confidential: true },
+  { key: 'bcr' as const, data: t.projects.items.bcr, confidential: true },
+  { key: 'priceSmart' as const, data: t.projects.items.priceSmart, confidential: true },
+];
+---
+
+<section id="projects" class="container-app py-16 md:py-20 border-t" style="border-color: var(--border-color);">
+  <div class="grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-end mb-12 reveal-on-scroll">
+    <div>
+      <div class="text-[11px] uppercase tracking-widest mb-1.5" style="color: var(--text-tertiary);">
+        {t.projects.sectionNumber}
+      </div>
+      <h2
+        class="font-medium tracking-tight"
+        style="font-size: clamp(1.75rem, 3.4vw, 2.25rem); letter-spacing: -0.02em; color: var(--text-primary);"
+      >
+        {t.projects.title}
+      </h2>
+    </div>
+    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+      {t.projects.description}
+    </p>
+  </div>
+
+  <div class="border-t" style="border-color: var(--border-color);">
+    {items.map((item, i) => {
+      const delayClass = `reveal-delay-${(i % 4) + 1}`;
+      const Tag = item.href ? 'a' : 'article';
+      const props = item.href ? { href: item.href } : {};
+      return (
+        <Tag
+          {...props}
+          class={`group block grid gap-6 lg:grid-cols-[1.4fr_1fr] lg:gap-12 py-10 md:py-12 border-b reveal-on-scroll ${delayClass} ${item.href ? 'transition-opacity hover:opacity-70' : ''}`}
+          style="border-color: var(--border-color);"
+        >
+          <div>
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] uppercase tracking-widest mb-4" style="color: var(--text-tertiary);">
+              <span>{item.data.label}</span>
+              {item.confidential && (
+                <>
+                  <span class="opacity-40">·</span>
+                  <span style="color: #E8B547;">{confidentialLabel}</span>
+                </>
+              )}
+            </div>
+            <div class="flex items-baseline gap-3">
+              <h3
+                class="font-medium leading-[0.95] tracking-tight"
+                style="font-size: clamp(2rem, 4.2vw, 2.75rem); letter-spacing: -0.03em; color: var(--text-primary);"
+              >
+                {item.data.name}
+              </h3>
+              {item.href && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-x-1 shrink-0" style="color: var(--text-primary);">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              )}
+            </div>
+            <p
+              class="mt-2 text-sm font-medium"
+              style="color: var(--text-secondary); letter-spacing: -0.005em;"
+            >
+              {item.data.tagline}
+            </p>
+            <p
+              class="mt-5 max-w-xl text-[13px] leading-relaxed"
+              style="color: var(--text-secondary);"
+            >
+              {item.data.description}
+            </p>
+          </div>
+
+          <div class="lg:pt-2">
+            <div class="text-[11px] uppercase tracking-widest mb-3" style="color: var(--text-tertiary);">
+              {t.projects.stackLabel}
+            </div>
+            <ul class="flex flex-wrap gap-1.5">
+              {item.data.stack.map((tech) => (
+                <li
+                  class="rounded-md border px-2.5 py-1 text-[11px]"
+                  style="border-color: var(--border-color); color: var(--text-secondary); background-color: var(--bg-secondary);"
+                >
+                  {tech}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Tag>
+      );
+    })}
+  </div>
+
+  <a
+    href={viewAllHref}
+    class="group mt-12 md:mt-16 flex justify-end items-baseline gap-4 md:gap-6 reveal-on-scroll transition-opacity hover:opacity-70 text-right"
+    style="color: var(--text-primary);"
+  >
+    <span
+      class="font-medium leading-[0.95] tracking-tight"
+      style="font-size: clamp(2.25rem, 5vw, 3rem); letter-spacing: -0.035em;"
+    >
+      {t.projects.viewAll}
+    </span>
+    <svg
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.75"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="transition-transform duration-300 group-hover:translate-x-1 shrink-0 self-center"
+    >
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+      <polyline points="12 5 19 12 12 19"></polyline>
+    </svg>
+  </a>
+</section>

@@ -1,0 +1,71 @@
+---
+import type { Dict } from '../i18n/utils';
+
+interface Props {
+  t: Dict;
+}
+
+const { t } = Astro.props;
+
+const steps = [
+  { key: 'conversation' as const, data: t.process.steps.conversation },
+  { key: 'prototype' as const, data: t.process.steps.prototype },
+  { key: 'development' as const, data: t.process.steps.development },
+  { key: 'delivery' as const, data: t.process.steps.delivery },
+];
+---
+
+<section id="process" class="container-app py-16 md:py-20 border-t" style="border-color: var(--border-color);">
+  <div class="grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-end mb-12 reveal-on-scroll">
+    <div>
+      <div class="text-[11px] uppercase tracking-widest mb-1.5" style="color: var(--text-tertiary);">
+        {t.process.sectionNumber}
+      </div>
+      <h2
+        class="font-medium tracking-tight"
+        style="font-size: clamp(1.75rem, 3.4vw, 2.25rem); letter-spacing: -0.02em; color: var(--text-primary);"
+      >
+        {t.process.title}
+      </h2>
+    </div>
+  </div>
+
+  <div class="border-t" style="border-color: var(--border-color);">
+    {steps.map((step, i) => {
+      const delayClass = `reveal-delay-${(i % 4) + 1}`;
+      const num = String(i + 1).padStart(2, '0');
+      return (
+        <article
+          class={`grid gap-4 lg:grid-cols-[0.4fr_1fr] lg:gap-10 py-10 md:py-12 border-b reveal-on-scroll ${delayClass}`}
+          style="border-color: var(--border-color);"
+        >
+          <div class="self-start">
+            <span
+              class="block font-medium leading-none tabular-nums"
+              style="font-size: clamp(2.75rem, 5.5vw, 4.5rem); letter-spacing: -0.045em; color: var(--text-tertiary);"
+            >
+              {num}
+            </span>
+          </div>
+          <div>
+            <div class="text-[11px] uppercase tracking-widest mb-3" style="color: var(--text-tertiary);">
+              {step.data.name}
+            </div>
+            <h3
+              class="font-medium leading-snug tracking-tight max-w-2xl"
+              style="font-size: clamp(1.15rem, 2vw, 1.5rem); letter-spacing: -0.02em; color: var(--text-primary);"
+            >
+              {step.data.headline}
+            </h3>
+            <p
+              class="mt-4 max-w-2xl text-[13px] leading-relaxed"
+              style="color: var(--text-secondary);"
+            >
+              {step.data.body}
+            </p>
+          </div>
+        </article>
+      );
+    })}
+  </div>
+</section>

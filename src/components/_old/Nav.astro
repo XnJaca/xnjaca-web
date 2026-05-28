@@ -1,0 +1,58 @@
+---
+import type { Lang, Dict } from '../i18n/utils';
+import ThemeToggle from './ThemeToggle.tsx';
+import LangToggle from './LangToggle.astro';
+
+interface Props {
+  lang: Lang;
+  t: Dict;
+}
+
+const { lang, t } = Astro.props;
+const base = lang === 'es' ? '' : '/en';
+---
+
+<nav
+  class="sticky top-0 z-50 backdrop-blur-md transition-colors duration-300"
+  style="background-color: color-mix(in srgb, var(--bg-primary) 80%, transparent); border-bottom: 0.5px solid var(--border-color);"
+>
+  <div class="container-app">
+    <div class="flex items-center justify-between py-4">
+      <a href={`${base}/`} class="flex items-center gap-2.5 group">
+        <div
+          class="flex h-7 w-7 items-center justify-center rounded-md text-[13px] font-medium transition-transform duration-300 group-hover:scale-105"
+          style="background-color: var(--text-primary);"
+        >
+          <span class="dark:hidden" style="color: #E8B547;">J</span>
+          <span class="hidden dark:inline" style="color: #0E0E0E;">J</span>
+        </div>
+        <span class="text-sm font-medium" style="color: var(--text-primary);">
+          Jonathan Cruz Ayala
+        </span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-6 text-[13px]" style="color: var(--text-secondary);">
+        <a href={`${base}/#services`} class="hover:opacity-100 opacity-75 transition-opacity">
+          {t.nav.services}
+        </a>
+        <a href={`${base}/#projects`} class="hover:opacity-100 opacity-75 transition-opacity">
+          {t.nav.projects}
+        </a>
+        <a href={`${base}/#about`} class="hover:opacity-100 opacity-75 transition-opacity">
+          {t.nav.about}
+        </a>
+        <a href={`${base}/#roadmap`} class="hover:opacity-100 opacity-75 transition-opacity">
+          {t.nav.roadmap}
+        </a>
+        <a href={`${base}/#contact`} class="hover:opacity-100 opacity-75 transition-opacity">
+          {t.nav.contact}
+        </a>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <LangToggle currentLang={lang} />
+        <ThemeToggle client:load />
+      </div>
+    </div>
+  </div>
+</nav>

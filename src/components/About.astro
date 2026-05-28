@@ -1,0 +1,63 @@
+---
+import type { Dict, Lang } from '../i18n/utils';
+
+interface Props {
+  t: Dict;
+  lang?: Lang;
+}
+
+const { lang = 'es' } = Astro.props;
+const base = lang === 'es' ? '' : '/en';
+---
+
+<section id="sobre" class="border-b" style="border-color: var(--color-line);">
+  <div class="container-x py-20 md:py-28">
+    <div class="grid gap-12 lg:grid-cols-[1.5fr_1fr] lg:gap-16 items-start">
+      <div class="reveal">
+        <div class="label mb-4">Sobre mí</div>
+        <h2 class="display-xl max-w-[18ch]" style="color: var(--color-text);">
+          Cuatro años. Una decena de productos. <span class="mark-accent">Un SaaS propio.</span>
+        </h2>
+        <div class="mt-9 space-y-5 max-w-[60ch] text-[1.0625rem] leading-relaxed" style="color: var(--color-text);">
+          <p>
+            Desarrollador full-stack con 4+ años en producción. Apps Flutter para Walmart, BCR y PriceSmart. Founder técnico de ACDEMIC, mi propio SaaS EdTech para docentes del MEP.
+          </p>
+          <p style="color: var(--color-text-mute);">
+            Trabajo entre dos polos: la disciplina enterprise (NDA, code reviews, releases coordinados) y la libertad de construir producto desde cero. Cada lado me hizo mejor en el otro.
+          </p>
+        </div>
+
+        <div class="mt-10">
+          <a href={`${base}/cv`} class="btn-ghost">
+            Ver CV completo
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <aside class="reveal reveal-d1">
+        <div class="surface p-6 md:p-7">
+          <div class="label mb-5">Hitos</div>
+          <ul class="space-y-3.5 text-[0.95rem]" style="color: var(--color-text);">
+            {[
+              '4+ años en producción',
+              'Apps móviles para Walmart, BCR, PriceSmart',
+              'Founder técnico de ACDEMIC (EdTech)',
+              'B.S. en Ingeniería de Software',
+              'Español nativo · Inglés B1',
+              'San José, Costa Rica · GMT-6',
+            ].map((h) => (
+              <li class="flex items-start gap-3">
+                <span class="mt-2 inline-block h-1 w-1 rounded-full shrink-0" style="background-color: var(--color-accent);"></span>
+                <span>{h}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

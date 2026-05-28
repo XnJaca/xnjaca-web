@@ -1,0 +1,95 @@
+---
+import { showPackages } from '../utils/flags';
+
+const questions = [
+  {
+    n: "01",
+    q: "¿Tu negocio necesita un software a la medida?",
+    a: "Sistemas de gestión, dashboards, integraciones, apps internas. Construyo la herramienta digital que tu equipo usa todos los días.",
+    cta: "Arranquemos por una llamada",
+    href: "#contacto",
+  },
+  {
+    n: "02",
+    q: "¿Tu landing actual tarda más de un mes en cerrar deals?",
+    a: "Sitio profesional en 2-3 semanas. Diseño, código, SEO básico y deploy. Vos lo mantenés o yo lo mantengo — vos decidís.",
+    cta: showPackages ? "Quiero mi landing" : "Hablemos por WhatsApp",
+    href: showPackages
+      ? "#paquete-lanzar"
+      : "https://wa.me/50685082921?text=¡Hola, Jonathan! Quiero conversar sobre una landing page.",
+    external: !showPackages,
+  },
+  {
+    n: "03",
+    q: "¿Querés una app móvil pero no sabés por dónde empezar?",
+    a: "Apps Flutter en producción para Walmart, BCR y PriceSmart. Sé qué se rompe, qué dura y qué escala. Empezamos por la conversación.",
+    cta: "Hablemos de la app",
+    href: "https://wa.me/50685082921?text=¡Hola, Jonathan! Quiero hablar sobre una app móvil.",
+    external: true,
+  },
+];
+---
+
+<section
+  id="caminos"
+  class="border-y"
+  style="border-color: var(--color-line); background-color: var(--color-bg);"
+>
+  <div class="container-x py-20 md:py-28">
+    <div class="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16 mb-14 md:mb-20">
+      <div class="reveal">
+        <div class="label mb-4">Caminos</div>
+        <h2 class="display-xl" style="color: var(--color-text);">
+          Tres preguntas.<br />
+          <span class="mark-accent">Tres caminos.</span>
+        </h2>
+      </div>
+      <p
+        class="reveal reveal-d1 text-[1.0625rem] leading-relaxed self-end max-w-[58ch]"
+        style="color: var(--color-text-mute);"
+      >
+        Tres tipos de cliente, tres formas de empezar. Si te suena una de estas, ya sabés por dónde arrancamos.
+      </p>
+    </div>
+
+    <div class="grid gap-px md:grid-cols-3 surface overflow-hidden">
+      {questions.map((item, i) => (
+        <a
+          href={item.href}
+          target={item.external ? "_blank" : undefined}
+          rel={item.external ? "noopener noreferrer" : undefined}
+          class={`group block p-7 md:p-9 transition-colors duration-200 relative reveal reveal-d${i + 1}`}
+          style="background-color: var(--color-surface);"
+          onmouseover="this.style.backgroundColor='var(--color-surface-2)'"
+          onmouseout="this.style.backgroundColor='var(--color-surface)'"
+        >
+          <div
+            class="font-mono tabular-nums mb-7"
+            style="font-size: 0.78rem; letter-spacing: 0.18em; color: var(--color-accent);"
+          >
+            {item.n}
+          </div>
+          <h3
+            class="display-l mb-5"
+            style="font-size: clamp(1.375rem, 2vw, 1.625rem); color: var(--color-text); line-height: 1.1;"
+          >
+            {item.q}
+          </h3>
+          <p class="text-[0.95rem] leading-relaxed mb-7 max-w-[42ch]" style="color: var(--color-text-mute);">
+            {item.a}
+          </p>
+          <div
+            class="inline-flex items-center gap-2 text-[0.875rem] font-semibold transition-transform duration-200 group-hover:translate-x-1"
+            style="color: var(--color-accent);"
+          >
+            {item.cta}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

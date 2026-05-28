@@ -1,0 +1,35 @@
+---
+import type { Lang } from '../i18n/utils';
+
+interface Props {
+  currentLang: Lang;
+}
+
+const { currentLang } = Astro.props;
+
+const path = Astro.url.pathname;
+let cleanPath = path;
+if (path.startsWith('/en/')) cleanPath = path.slice(3);
+else if (path === '/en') cleanPath = '/';
+
+const esHref = cleanPath;
+const enHref = cleanPath === '/' ? '/en/' : `/en${cleanPath}`;
+---
+
+<div class="flex items-center gap-1 text-xs">
+  <a
+    href={esHref}
+    class={`transition-colors ${currentLang === 'es' ? 'font-medium' : 'opacity-50 hover:opacity-100'}`}
+    style="color: var(--text-primary);"
+  >
+    ES
+  </a>
+  <span class="opacity-30 mx-0.5" style="color: var(--text-tertiary);">·</span>
+  <a
+    href={enHref}
+    class={`transition-colors ${currentLang === 'en' ? 'font-medium' : 'opacity-50 hover:opacity-100'}`}
+    style="color: var(--text-primary);"
+  >
+    EN
+  </a>
+</div>

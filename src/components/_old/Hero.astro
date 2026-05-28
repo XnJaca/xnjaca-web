@@ -1,0 +1,127 @@
+---
+import type { Dict } from '../i18n/utils';
+
+interface Props {
+  t: Dict;
+}
+
+const { t } = Astro.props;
+---
+
+<section class="container-app py-16 md:py-20">
+  <div class="grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-end">
+    <div>
+      <div
+        class="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs reveal-on-scroll"
+        style="background-color: color-mix(in srgb, #E8B547 14%, transparent); border-color: color-mix(in srgb, #E8B547 35%, transparent); color: var(--accent-text, #8A6418);"
+      >
+        <span class="relative flex h-1.5 w-1.5">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" style="background-color: #16A34A;"></span>
+          <span class="relative inline-flex h-1.5 w-1.5 rounded-full" style="background-color: #16A34A;"></span>
+        </span>
+        <span class="dark:hidden" style="color: #8A6418;">{t.hero.badge}</span>
+        <span class="hidden dark:inline" style="color: #E8B547;">{t.hero.badge}</span>
+      </div>
+
+      <h1
+        class="mt-6 reveal-on-scroll reveal-delay-1 font-medium tracking-tight"
+        style="font-size: clamp(2.25rem, 5vw, 3rem); line-height: 1.05; color: var(--text-primary);"
+      >
+        {t.hero.titleStart}{' '}
+        <span
+          class="inline-block rounded px-2 py-0"
+          style="background-color: #E8B547; color: #0E0E0E;"
+        >
+          {t.hero.titleHighlight}
+        </span>
+        <br />
+        {t.hero.titleMid}
+        <br />
+        <span style="color: var(--text-tertiary);">{t.hero.titleEnd}</span>
+      </h1>
+
+      <p
+        class="mt-5 max-w-md text-sm leading-relaxed reveal-on-scroll reveal-delay-2"
+        style="color: var(--text-secondary);"
+      >
+        {t.hero.description}
+      </p>
+
+      <div class="mt-7 flex flex-wrap items-center gap-3 reveal-on-scroll reveal-delay-3">
+        <a href="#contact" class="btn-primary">
+          {t.hero.ctaPrimary}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+        <a href="#projects" class="btn-ghost">{t.hero.ctaSecondary}</a>
+      </div>
+    </div>
+
+    <div class="relative reveal-on-scroll reveal-delay-4 min-h-[260px] lg:min-h-[300px]">
+      <span
+        aria-hidden="true"
+        class="hero-now-huge absolute right-[-0.06em] top-[-0.18em] font-medium pointer-events-none select-none whitespace-nowrap"
+        style="font-size: clamp(7.5rem, 16vw, 12rem); line-height: 0.82; letter-spacing: -0.075em; color: var(--text-primary);"
+      >
+        {t.hero.nowHuge}
+      </span>
+
+      <div class="relative z-10 ml-auto max-w-[290px] pt-[6.5rem] md:pt-[7.5rem]">
+        <p
+          class="text-[15px] leading-snug font-medium"
+          style="color: var(--text-primary); letter-spacing: -0.005em;"
+        >
+          {t.hero.nowBuilding}
+        </p>
+        <div class="my-5 h-px w-10" style="background-color: var(--border-color);"></div>
+        <div class="text-[12px] leading-relaxed" style="color: var(--text-secondary);">
+          {t.hero.nowLocation}
+        </div>
+        <div class="mt-1 text-[12px]" style="color: var(--text-tertiary);">
+          {t.hero.nowDate}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="mt-14 flex flex-wrap items-end gap-x-10 gap-y-4 border-t pt-7 reveal-on-scroll reveal-delay-4"
+    style="border-color: var(--border-color);"
+  >
+    <div>
+      <div class="text-2xl md:text-[26px] font-medium tracking-tight leading-none" style="color: var(--text-primary);">
+        4+
+      </div>
+      <div class="mt-1 text-[11px]" style="color: var(--text-tertiary);">
+        {t.hero.stats.years}
+      </div>
+    </div>
+    <div>
+      <div class="text-2xl md:text-[26px] font-medium tracking-tight leading-none" style="color: var(--text-primary);">
+        12+
+      </div>
+      <div class="mt-1 text-[11px]" style="color: var(--text-tertiary);">
+        {t.hero.stats.projects}
+      </div>
+    </div>
+    <div>
+      <div class="text-2xl md:text-[26px] font-medium tracking-tight leading-none" style="color: var(--text-primary);">
+        1
+      </div>
+      <div class="mt-1 text-[11px]" style="color: var(--text-tertiary);">
+        {t.hero.stats.saas}
+      </div>
+    </div>
+    <div class="ml-auto self-end">
+      <div class="flex items-center gap-1.5 text-[11px]" style="color: var(--text-tertiary);">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-bounce">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <polyline points="19 12 12 19 5 12"></polyline>
+        </svg>
+        {t.hero.scroll}
+      </div>
+    </div>
+  </div>
+</section>

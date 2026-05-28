@@ -1,0 +1,151 @@
+---
+import type { Dict, Lang } from '../i18n/utils';
+
+interface Props {
+  t: Dict;
+  lang: Lang;
+}
+
+const { t, lang } = Astro.props;
+const base = lang === 'es' ? '' : '/en';
+
+const featured = [
+  {
+    key: 'acdemic',
+    label: 'Founder · activo',
+    name: 'ACDEMIC',
+    tagline: 'SaaS EdTech para docentes del MEP',
+    stack: ['NestJS', 'Angular', 'PostgreSQL', 'Flutter'],
+    href: `${base}/projects/acdemic`,
+  },
+  {
+    key: 'professionalConstruction',
+    label: 'Freelance · activo · dev + marca',
+    name: 'Professional Construction',
+    tagline: 'Sitio y presencia digital para contratista de techos y remodelación en USA',
+    stack: ['Astro 5', 'TypeScript', 'Tailwind', 'Render'],
+    href: `${base}/projects/professional-construction`,
+  },
+  {
+    key: 'livingstoneContractors',
+    label: 'Freelance · activo · dev + marca',
+    name: 'Living Stone Contractors',
+    tagline: 'Sitio + panel admin para gestionar contenido',
+    stack: ['Astro', 'Express', 'PostgreSQL', 'Cloudinary'],
+    href: `${base}/projects/livingstone-contractors`,
+  },
+  {
+    key: 'netfic',
+    label: 'Dev lead · activo',
+    name: 'NetFic Solutions',
+    tagline: 'Empresa de servicios tecnológicos · infra + dev',
+    stack: ['Astro 5', 'TypeScript', 'Tailwind', 'Render'],
+    href: `${base}/projects/netfic`,
+  },
+  {
+    key: 'walmart',
+    label: 'Contract · vía IDS · dic 2025 — may 2026',
+    name: 'Walmart',
+    tagline: 'App móvil Flutter en producción · LATAM',
+    stack: ['Flutter', 'Dart', 'VTEX', 'SauceLabs'],
+    confidential: true,
+  },
+  {
+    key: 'bcr',
+    label: 'Contract · 2023 — 2025',
+    name: 'Banco de Costa Rica',
+    tagline: 'Rediseño de app móvil bancaria',
+    stack: ['Flutter', 'Dart', 'Azure DevOps', 'AWS'],
+    confidential: true,
+  },
+];
+---
+
+<section id="proyectos" class="border-b" style="border-color: var(--color-line);">
+  <div class="container-x py-20 md:py-28">
+    <div class="grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-16 mb-14 md:mb-20">
+      <div class="reveal">
+        <div class="label mb-4">Trabajo reciente</div>
+        <h2 class="display-xl" style="color: var(--color-text);">
+          Productos propios.<br />
+          Contratos <span class="mark-accent">enterprise</span>.
+        </h2>
+      </div>
+      <p
+        class="reveal reveal-d1 text-[1.0625rem] leading-relaxed self-end max-w-[58ch]"
+        style="color: var(--color-text-mute);"
+      >
+        Selección de proyectos. Los marcados con flecha tienen caso de estudio; los demás se mencionan por NDA.
+      </p>
+    </div>
+
+    <div class="surface overflow-hidden">
+      {featured.map((p, i) => {
+        const Tag = p.href ? 'a' : 'article';
+        const tagProps = p.href ? { href: p.href } : {};
+        return (
+          <Tag
+            {...tagProps}
+            class={`group block grid gap-6 lg:grid-cols-[1.4fr_1fr] lg:gap-12 px-7 md:px-9 py-10 md:py-12 ${i < featured.length - 1 ? 'border-b' : ''} ${p.href ? 'transition-colors duration-200' : ''} reveal reveal-d${Math.min((i % 4) + 1, 4)}`}
+            style={`border-color: var(--color-line); ${p.href ? '' : ''}`}
+            onmouseover={p.href ? "this.style.backgroundColor='var(--color-surface-2)'" : undefined}
+            onmouseout={p.href ? "this.style.backgroundColor='transparent'" : undefined}
+          >
+            <div>
+              <div class="flex items-center gap-3 mb-4">
+                <span class="label">{p.label}</span>
+                {p.confidential && (
+                  <>
+                    <span style="color: var(--color-line);">·</span>
+                    <span class="label" style="color: var(--color-gold);">NDA</span>
+                  </>
+                )}
+              </div>
+              <div class="flex items-baseline gap-3 mb-2">
+                <h3 class="display-l" style="font-size: clamp(1.875rem, 3vw, 2.5rem); color: var(--color-text);">
+                  {p.name}
+                </h3>
+                {p.href && (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-x-1" style="color: var(--color-accent);">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                )}
+              </div>
+              <p class="text-[0.95rem] leading-relaxed max-w-[44ch]" style="color: var(--color-text-mute);">
+                {p.tagline}
+              </p>
+            </div>
+            <div class="lg:pt-3">
+              <div class="label mb-3">Stack</div>
+              <ul class="flex flex-wrap gap-1.5">
+                {p.stack.map((tech) => (
+                  <li
+                    class="px-2.5 py-1 text-[0.72rem] rounded-md font-mono"
+                    style="background-color: var(--color-surface-2); color: var(--color-text-mute); border: 1px solid var(--color-line);"
+                  >
+                    {tech}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Tag>
+        );
+      })}
+    </div>
+
+    <div class="mt-12 flex justify-end reveal">
+      <a
+        href={`${base}/projects/`}
+        class="group inline-flex items-baseline gap-3 font-display font-bold transition-opacity hover:opacity-70"
+        style="font-size: clamp(1.5rem, 2.5vw, 2rem); letter-spacing: -0.03em; color: var(--color-text);"
+      >
+        Ver todos los proyectos
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="self-center transition-transform duration-300 group-hover:translate-x-1" style="color: var(--color-accent);">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,67 @@
+---
+import LangToggle from './LangToggle.astro';
+import type { Dict, Lang } from '../i18n/utils';
+import { showPackages } from '../utils/flags';
+
+interface Props {
+  t: Dict;
+  lang: Lang;
+}
+
+const { t, lang } = Astro.props;
+const base = lang === 'es' ? '' : '/en';
+
+const items = [
+  ...(showPackages
+    ? [{ label: t.nav.services, href: `${base}/#paquetes` }]
+    : []),
+  { label: t.nav.projects, href: `${base}/#proyectos` },
+  { label: t.nav.about, href: `${base}/#sobre` },
+  { label: t.nav.contact, href: `${base}/#contacto` },
+];
+---
+
+<header
+  class="sticky top-0 z-40 border-b"
+  style="background-color: rgba(14, 14, 16, 0.78); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-color: var(--color-line);"
+>
+  <div class="container-x flex h-[68px] items-center justify-between">
+    <a
+      href={base + '/'}
+      class="font-display font-bold tracking-tight text-[1.15rem] flex items-center gap-2"
+      style="color: var(--color-text); letter-spacing: -0.02em;"
+    >
+      Jonathan<span style="color: var(--color-accent);">.</span>
+      <span class="hidden sm:inline label" style="margin-left: 0.25rem;">CR</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-x-7" aria-label="Main navigation">
+      {items.map((item) => (
+        <a
+          href={item.href}
+          class="text-[0.9rem] font-medium transition-colors duration-150"
+          style="color: var(--color-text-mute);"
+          onmouseover="this.style.color='var(--color-text)'"
+          onmouseout="this.style.color='var(--color-text-mute)'"
+        >
+          {item.label}
+        </a>
+      ))}
+      <a href={`${base}/#contacto`} class="btn-primary" style="padding: 0.55rem 1.1rem; font-size: 0.85rem;">
+        {t.hero.ctaPrimary}
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+      <LangToggle lang={lang} />
+    </nav>
+
+    <div class="flex md:hidden items-center gap-2">
+      <LangToggle lang={lang} />
+      <a href={`${base}/#contacto`} class="btn-primary" style="padding: 0.5rem 0.9rem; font-size: 0.8rem;">
+        {t.hero.ctaPrimary}
+      </a>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,42 @@
+# Build output
+dist/
+.output/
+
+# Dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env.production
+.env.local
+
+# macOS-specific files
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Astro
+.astro/
+
+# Vercel
+.vercel/
+
+# Notas internas de trabajo (no van al repo)
+CLAUDE.md
+PROMPT_CONTINUE.md
+
+# AI tooling / local skills (no van al repo)
+.agents/
+.claude/
+skills-lock.json
+PRODUCT.md
+DESIGN.md
+

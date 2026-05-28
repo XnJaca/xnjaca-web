@@ -1,0 +1,186 @@
+---
+const packages = [
+  {
+    id: "lanzar",
+    name: "Lanzar",
+    price: "$600",
+    delivery: "2-3 sem",
+    headline: "Landing page profesional",
+    body: "Vos tenés una idea y necesitás presencia online ya. Sitio responsive, SEO básico, hosting y dominio incluidos.",
+    features: [
+      "Landing multi-sección a medida",
+      "Responsive + SEO básico",
+      "Dominio y hosting incluidos",
+      "Entrega 2-3 semanas",
+    ],
+    cta: "Quiero mi landing",
+    href: "https://wa.me/50685082921?text=¡Hola, Jonathan! Me interesa el paquete Lanzar.",
+    highlighted: false,
+  },
+  {
+    id: "crecer",
+    name: "Crecer",
+    price: "$1.500",
+    delivery: "4-8 sem",
+    headline: "Web completa o app móvil",
+    body: "Tu negocio ya rueda. Necesitás web multi-página con CMS o app móvil con backend. Soporte 1 mes incluido.",
+    features: [
+      "Web multi-página + CMS, o app móvil (Flutter)",
+      "Backend Node si la app lo requiere",
+      "SEO + analytics",
+      "1 mes de soporte post-entrega",
+      "Entrega 4-8 semanas",
+    ],
+    cta: "Hablemos de Crecer",
+    href: "https://wa.me/50685082921?text=¡Hola, Jonathan! Me interesa el paquete Crecer.",
+    highlighted: true,
+    badge: "Más elegido",
+  },
+  {
+    id: "escalar",
+    name: "Escalar",
+    price: "$3.500",
+    delivery: "8-14 sem",
+    headline: "Producto con arquitectura sólida",
+    body: "App web o móvil con backend, auth, panel admin e integraciones. Arquitectura pensada desde día 1 para crecer.",
+    features: [
+      "App web o móvil completa con backend",
+      "Auth, panel admin, integraciones",
+      "Clean architecture · SOLID · DRY",
+      "3 meses de soporte post-entrega",
+      "Entrega 8-14 semanas",
+    ],
+    cta: "Vamos por Escalar",
+    href: "https://wa.me/50685082921?text=¡Hola, Jonathan! Me interesa el paquete Escalar.",
+    highlighted: false,
+  },
+];
+---
+
+<section id="paquetes" class="border-b" style="border-color: var(--color-line);">
+  <div class="container-x py-20 md:py-28">
+    <div class="grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-16 mb-14 md:mb-20">
+      <div class="reveal">
+        <div class="label mb-4">Paquetes · precio claro de entrada</div>
+        <h2 class="display-xl" style="color: var(--color-text);">
+          Tres caminos.<br />
+          Cero <span class="mark-accent">sorpresas</span> en la factura.
+        </h2>
+      </div>
+      <p
+        class="reveal reveal-d1 text-[1.0625rem] leading-relaxed self-end max-w-[52ch]"
+        style="color: var(--color-text-mute);"
+      >
+        Precios de entrada. Lo que cambia es el alcance — y eso lo definimos antes de tocar código. Soporte post-entrega incluido en los dos paquetes mayores.
+      </p>
+    </div>
+
+    <div id="paquete-lanzar" class="grid gap-5 md:gap-6 lg:grid-cols-3">
+      {packages.map((pkg, i) => (
+        <article
+          id={`paquete-${pkg.id}`}
+          class={`reveal reveal-d${i + 1} relative p-7 md:p-8 flex flex-col`}
+          style={pkg.highlighted
+            ? "background-color: var(--color-accent); color: var(--color-bg); border: 1px solid var(--color-accent); border-radius: 16px;"
+            : "background-color: var(--color-surface); border: 1px solid var(--color-line); border-radius: 16px;"
+          }
+        >
+          {pkg.badge && (
+            <div
+              class="absolute -top-3 left-7 px-2.5 py-1 rounded-full text-[0.68rem] font-bold uppercase font-mono"
+              style="background-color: var(--color-bg); color: var(--color-accent); letter-spacing: 0.15em; border: 1px solid var(--color-accent);"
+            >
+              {pkg.badge}
+            </div>
+          )}
+
+          <div class="flex items-baseline justify-between mb-7">
+            <h3
+              class="display-l"
+              style={`font-size: 1.875rem; color: ${pkg.highlighted ? 'var(--color-bg)' : 'var(--color-text)'};`}
+            >
+              {pkg.name}
+            </h3>
+            <span
+              class="label"
+              style={`color: ${pkg.highlighted ? 'rgba(14,14,16,0.65)' : 'var(--color-text-mute)'};`}
+            >
+              {pkg.delivery}
+            </span>
+          </div>
+
+          <div class="mb-6">
+            <div
+              class="font-display tabular-nums leading-none"
+              style={`font-size: clamp(2.5rem, 4vw, 3rem); letter-spacing: -0.04em; color: ${pkg.highlighted ? 'var(--color-bg)' : 'var(--color-text)'};`}
+            >
+              {pkg.price}
+            </div>
+            <div
+              class="label mt-2"
+              style={`color: ${pkg.highlighted ? 'rgba(14,14,16,0.65)' : 'var(--color-text-mute)'};`}
+            >
+              Desde · sin IVA
+            </div>
+          </div>
+
+          <div
+            class="text-[0.95rem] font-medium leading-snug mb-3"
+            style={`color: ${pkg.highlighted ? 'var(--color-bg)' : 'var(--color-text)'};`}
+          >
+            {pkg.headline}
+          </div>
+          <p
+            class="text-[0.875rem] leading-relaxed mb-6"
+            style={`color: ${pkg.highlighted ? 'rgba(14,14,16,0.78)' : 'var(--color-text-mute)'};`}
+          >
+            {pkg.body}
+          </p>
+
+          <ul class="space-y-2.5 mb-8 flex-1">
+            {pkg.features.map((f) => (
+              <li class="flex items-start gap-2.5 text-[0.875rem]">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mt-0.5 shrink-0"
+                  style={`color: ${pkg.highlighted ? 'var(--color-bg)' : 'var(--color-success)'};`}
+                >
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span style={`color: ${pkg.highlighted ? 'var(--color-bg)' : 'var(--color-text)'};`}>{f}</span>
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href={pkg.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full font-semibold text-[0.9rem] transition-colors duration-200"
+            style={pkg.highlighted
+              ? "background-color: var(--color-bg); color: var(--color-text);"
+              : "background-color: var(--color-accent); color: var(--color-bg);"
+            }
+          >
+            {pkg.cta}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </article>
+      ))}
+    </div>
+
+    <p class="mt-10 text-[0.85rem] text-center reveal" style="color: var(--color-text-mute);">
+      ¿Necesitás algo distinto? <a href="https://wa.me/50685082921" target="_blank" rel="noopener noreferrer" class="underline" style="color: var(--color-accent);">Hablemos por WhatsApp</a> y armamos algo a medida.
+    </p>
+  </div>
+</section>

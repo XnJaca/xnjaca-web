@@ -1,0 +1,90 @@
+---
+import type { Dict, Lang } from '../i18n/utils';
+import { showPackages } from '../utils/flags';
+
+interface Props {
+  t: Dict;
+  lang?: Lang;
+}
+
+const { t, lang = 'es' } = Astro.props;
+const base = lang === 'es' ? '' : '/en';
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t" style="border-color: var(--color-line); background-color: var(--color-surface);">
+  <div class="container-x py-14 md:py-16">
+    <div class="grid gap-12 lg:grid-cols-[1.4fr_2.6fr] lg:gap-16 mb-12">
+      <div>
+        <a
+          href={base + '/'}
+          class="font-display font-bold tracking-tight inline-flex items-center"
+          style="font-size: 1.75rem; letter-spacing: -0.03em; line-height: 1; color: var(--color-text);"
+        >
+          Jonathan<span style="color: var(--color-accent);">.</span>
+        </a>
+        <p
+          class="mt-5 max-w-[42ch] text-[0.95rem] leading-relaxed"
+          style="color: var(--color-text-mute);"
+        >
+          Desarrollador full-stack en Costa Rica. Apps móviles, web y sistemas a medida para empresas, founders y emprendedores.
+        </p>
+      </div>
+
+      <div class="grid gap-10 sm:grid-cols-3">
+        <div>
+          <div class="label mb-5">Navegación</div>
+          <ul class="space-y-3">
+            <li><a href={`${base}/#caminos`} class="text-[0.9rem] hover:underline" style="color: var(--color-text);">Caminos</a></li>
+            {showPackages && (
+              <li><a href={`${base}/#paquetes`} class="text-[0.9rem] hover:underline" style="color: var(--color-text);">Paquetes</a></li>
+            )}
+            <li><a href={`${base}/#proyectos`} class="text-[0.9rem] hover:underline" style="color: var(--color-text);">Proyectos</a></li>
+            <li><a href={`${base}/#contacto`} class="text-[0.9rem] hover:underline" style="color: var(--color-text);">Contacto</a></li>
+            <li><a href={`${base}/cv`} class="text-[0.9rem] hover:underline" style="color: var(--color-text);">CV completo</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="label mb-5">Contacto</div>
+          <ul class="space-y-3">
+            <li>
+              <a href="https://wa.me/50685082921" target="_blank" rel="noopener noreferrer" class="text-[0.9rem] hover:underline tabular-nums" style="color: var(--color-text);">
+                +506 8508 2921
+              </a>
+            </li>
+            <li>
+              <a href="mailto:xnjaca@gmail.com" class="text-[0.9rem] hover:underline" style="color: var(--color-text);">
+                xnjaca@gmail.com
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/xnjaca/" target="_blank" rel="noopener noreferrer" class="text-[0.9rem] hover:underline" style="color: var(--color-text);">
+                linkedin.com/in/xnjaca
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <div class="label mb-5">Producto</div>
+          <ul class="space-y-3">
+            <li>
+              <a href="https://acdemic.com" target="_blank" rel="noopener noreferrer" class="text-[0.9rem] hover:underline inline-flex items-center gap-1.5" style="color: var(--color-gold);">
+                ACDEMIC
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </a>
+              <div class="text-[0.78rem] mt-1" style="color: var(--color-text-mute);">SaaS EdTech · pre-launch</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-7 border-t text-[0.8rem]"
+      style="border-color: var(--color-line); color: var(--color-text-mute);"
+    >
+      <div>© {year} Jonathan Cruz Ayala · {t.footer.rights}</div>
+      <div>{t.footer.built}</div>
+    </div>
+  </div>
+</footer>

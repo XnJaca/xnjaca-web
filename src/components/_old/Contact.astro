@@ -1,0 +1,191 @@
+---
+import type { Dict } from '../i18n/utils';
+
+interface Props {
+  t: Dict;
+}
+
+const { t } = Astro.props;
+const c = t.contact;
+---
+
+<section id="contact" class="container-app py-16 md:py-20 border-t" style="border-color: var(--border-color);">
+  <div class="grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-end mb-12 reveal-on-scroll">
+    <div>
+      <div class="text-[11px] uppercase tracking-widest mb-1.5" style="color: var(--text-tertiary);">
+        {c.sectionNumber}
+      </div>
+      <h2
+        class="font-medium tracking-tight"
+        style="font-size: clamp(1.75rem, 3.4vw, 2.25rem); letter-spacing: -0.02em; color: var(--text-primary);"
+      >
+        {c.title}
+      </h2>
+    </div>
+  </div>
+
+  <div class="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
+    <div class="reveal-on-scroll">
+      <p class="text-[15px] leading-relaxed max-w-md" style="color: var(--text-secondary);">
+        {c.intro}
+      </p>
+      <ul class="mt-8 flex flex-col">
+        <li class="py-3 border-b" style="border-color: var(--border-color);">
+          <div class="text-[11px] uppercase tracking-widest mb-1" style="color: var(--text-tertiary);">
+            {c.channels.emailLabel}
+          </div>
+          <a
+            href={`mailto:${c.channels.emailValue}`}
+            class="text-[14px] transition-opacity hover:opacity-70"
+            style="color: var(--text-primary);"
+          >
+            {c.channels.emailValue}
+          </a>
+        </li>
+        <li class="py-3 border-b" style="border-color: var(--border-color);">
+          <div class="text-[11px] uppercase tracking-widest mb-1" style="color: var(--text-tertiary);">
+            {c.channels.linkedinLabel}
+          </div>
+          <a
+            href={c.channels.linkedinHref}
+            target="_blank"
+            rel="noopener"
+            class="text-[14px] transition-opacity hover:opacity-70"
+            style="color: var(--text-primary);"
+          >
+            {c.channels.linkedinValue}
+          </a>
+        </li>
+        <li class="py-3">
+          <div class="text-[11px] uppercase tracking-widest mb-1" style="color: var(--text-tertiary);">
+            {c.channels.locationLabel}
+          </div>
+          <span class="text-[14px]" style="color: var(--text-primary);">
+            {c.channels.locationValue}
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <form
+      id="contact-form"
+      class="reveal-on-scroll reveal-delay-1 rounded-xl border p-6 md:p-7 flex flex-col gap-5"
+      style="background-color: var(--bg-secondary); border-color: var(--border-color);"
+      novalidate
+    >
+      <label class="flex flex-col gap-1.5">
+        <span class="text-[11px] uppercase tracking-widest" style="color: var(--text-tertiary);">
+          {c.form.nameLabel}
+        </span>
+        <input
+          type="text"
+          name="name"
+          required
+          placeholder={c.form.namePlaceholder}
+          class="contact-input"
+        />
+      </label>
+      <label class="flex flex-col gap-1.5">
+        <span class="text-[11px] uppercase tracking-widest" style="color: var(--text-tertiary);">
+          {c.form.emailLabel}
+        </span>
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder={c.form.emailPlaceholder}
+          class="contact-input"
+        />
+      </label>
+      <label class="flex flex-col gap-1.5">
+        <span class="text-[11px] uppercase tracking-widest" style="color: var(--text-tertiary);">
+          {c.form.messageLabel}
+        </span>
+        <textarea
+          name="message"
+          required
+          rows="5"
+          placeholder={c.form.messagePlaceholder}
+          class="contact-input resize-y"
+        ></textarea>
+      </label>
+
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
+        <button
+          type="submit"
+          class="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+          data-submit
+          data-label-idle={c.form.submit}
+          data-label-sending={c.form.sending}
+        >
+          <span data-label>{c.form.submit}</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+        <p
+          data-status
+          class="text-[12px] leading-tight min-h-[1.2em]"
+          style="color: var(--text-secondary);"
+          data-msg-success={c.form.success}
+          data-msg-error={c.form.error}
+          data-msg-network={c.form.networkError}
+        ></p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script>
+  function initContactForm() {
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    if (!form) return;
+
+    const button = form.querySelector('[data-submit]') as HTMLButtonElement | null;
+    const buttonLabel = form.querySelector('[data-submit] [data-label]') as HTMLElement | null;
+    const status = form.querySelector('[data-status]') as HTMLElement | null;
+    if (!button || !buttonLabel || !status) return;
+
+    const labelIdle = button.dataset.labelIdle ?? 'Send';
+    const labelSending = button.dataset.labelSending ?? 'Sending...';
+    const msgSuccess = status.dataset.msgSuccess ?? 'Sent.';
+    const msgError = status.dataset.msgError ?? 'Failed.';
+    const msgNetwork = status.dataset.msgNetwork ?? 'Network error.';
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form));
+      button.disabled = true;
+      buttonLabel.textContent = labelSending;
+      status.textContent = '';
+      status.style.color = 'var(--text-secondary)';
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        const json = await res.json();
+        if (json.ok) {
+          status.textContent = msgSuccess;
+          status.style.color = '#16A34A';
+          form.reset();
+        } else {
+          status.textContent = msgError;
+          status.style.color = 'var(--text-secondary)';
+        }
+      } catch {
+        status.textContent = msgNetwork;
+        status.style.color = 'var(--text-secondary)';
+      } finally {
+        button.disabled = false;
+        buttonLabel.textContent = labelIdle;
+      }
+    });
+  }
+
+  initContactForm();
+  document.addEventListener('astro:after-swap', initContactForm);
+</script>
