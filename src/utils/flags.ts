@@ -2,7 +2,7 @@
  * Feature flags leídos desde variables de entorno.
  *
  * Para esconder la sección Paquetes (precios visibles) sin tocar código,
- * setear en `.env` o en las env vars de Vercel:
+ * setear en `.env` o en las env vars de Render:
  *
  *   PUBLIC_SHOW_PACKAGES=false
  *
