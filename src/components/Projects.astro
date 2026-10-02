@@ -59,6 +59,35 @@ const featured = [
     confidential: true,
   },
 ];
+
+const inProgress = [
+  {
+    name: 'AJ Flooring',
+    label: lang === 'es' ? 'Propuesta · en curso' : 'Proposal · in progress',
+    tagline:
+      lang === 'es'
+        ? 'Rediseño con showroom 3D interactivo para un contratista de pisos comerciales en Florida.'
+        : 'Redesign with an interactive 3D showroom for a commercial flooring contractor in Florida.',
+    stack: ['Astro', 'Three.js', 'GSAP', 'Vercel'],
+    links: [{ label: lang === 'es' ? 'Ver demo' : 'View demo', href: 'https://aj-flooring.vercel.app' }],
+  },
+  {
+    name: 'Sandy Garden',
+    label: lang === 'es' ? 'Propuesta · en curso' : 'Proposal · in progress',
+    tagline:
+      lang === 'es'
+        ? 'Rediseño web y tarjeta de lealtad digital para un parque sensorial infantil en Costa Rica.'
+        : "Website redesign and digital loyalty card for a children's sensory playground in Costa Rica.",
+    stack: ['Astro', 'Three.js', 'Canvas 2D', 'Vercel'],
+    links: [
+      { label: lang === 'es' ? 'Ver demo' : 'View demo', href: 'https://sandy-garden-demo.vercel.app' },
+      {
+        label: lang === 'es' ? 'Tarjeta de lealtad' : 'Loyalty card',
+        href: 'https://sandy-garden-demo.vercel.app/lealtad',
+      },
+    ],
+  },
+];
 ---
 
 <section id="proyectos" class="border-b" style="border-color: var(--color-line);">
@@ -132,6 +161,66 @@ const featured = [
           </Tag>
         );
       })}
+    </div>
+
+    <div class="mt-16 md:mt-20">
+      <div class="reveal flex items-baseline justify-between gap-6 mb-6">
+        <h3 class="display-l" style="font-size: clamp(1.625rem, 2.6vw, 2.125rem); color: var(--color-text);">
+          {lang === 'es' ? 'Proyectos en curso' : 'Work in progress'}
+        </h3>
+        <span class="label">{lang === 'es' ? 'Demos en vivo' : 'Live demos'}</span>
+      </div>
+
+      <div class="grid gap-4 md:grid-cols-2">
+        {inProgress.map((p, i) => (
+          <article class={`surface flex flex-col gap-6 px-7 md:px-9 py-9 reveal reveal-d${i + 1}`}>
+            <div>
+              <div class="flex items-center gap-2.5 mb-4">
+                <span class="relative flex h-2 w-2" aria-hidden="true">
+                  <span class="absolute inline-flex h-full w-full rounded-full opacity-60 animate-ping" style="background-color: var(--color-gold);"></span>
+                  <span class="relative inline-flex h-2 w-2 rounded-full" style="background-color: var(--color-gold);"></span>
+                </span>
+                <span class="label">{p.label}</span>
+              </div>
+              <h4 class="display-l mb-2" style="font-size: clamp(1.625rem, 2.6vw, 2.125rem); color: var(--color-text);">
+                {p.name}
+              </h4>
+              <p class="text-[0.95rem] leading-relaxed max-w-[48ch]" style="color: var(--color-text-mute);">
+                {p.tagline}
+              </p>
+            </div>
+
+            <ul class="flex flex-wrap gap-1.5">
+              {p.stack.map((tech) => (
+                <li
+                  class="px-2.5 py-1 text-[0.72rem] rounded-md font-mono"
+                  style="background-color: var(--color-surface-2); color: var(--color-text-mute); border: 1px solid var(--color-line);"
+                >
+                  {tech}
+                </li>
+              ))}
+            </ul>
+
+            <div class="mt-auto flex flex-wrap gap-x-7 gap-y-3">
+              {p.links.map((link) => (
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener"
+                  class="group inline-flex items-center gap-2 font-display font-bold transition-opacity hover:opacity-70"
+                  style="font-size: 1.0625rem; letter-spacing: -0.02em; color: var(--color-text);"
+                >
+                  {link.label}
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" style="color: var(--color-accent);">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
+                </a>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
     </div>
 
     <div class="mt-12 flex justify-end reveal">
