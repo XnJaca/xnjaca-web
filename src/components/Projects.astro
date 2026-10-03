@@ -62,6 +62,16 @@ const featured = [
 
 const inProgress = [
   {
+    name: '844Roofing.com',
+    label: lang === 'es' ? 'Propuesta · en curso' : 'Proposal · in progress',
+    tagline:
+      lang === 'es'
+        ? 'Showroom 3D de techos con colores reales de su catálogo y timelapse de tormenta, para un contratista en Florida.'
+        : 'A 3D roof showroom with real catalog colors and a storm timelapse, for a roofing contractor in Florida.',
+    stack: ['Astro', 'Three.js', 'WebGL', 'Vercel'],
+    links: [{ label: lang === 'es' ? 'Ver demo' : 'View demo', href: 'https://844-roofing.vercel.app' }],
+  },
+  {
     name: 'AJ Flooring',
     label: lang === 'es' ? 'Propuesta · en curso' : 'Proposal · in progress',
     tagline:
@@ -171,7 +181,7 @@ const inProgress = [
         <span class="label">{lang === 'es' ? 'Demos en vivo' : 'Live demos'}</span>
       </div>
 
-      <div class="grid gap-4 md:grid-cols-2">
+      <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {inProgress.map((p, i) => (
           <article class={`surface flex flex-col gap-6 px-7 md:px-9 py-9 reveal reveal-d${i + 1}`}>
             <div>
