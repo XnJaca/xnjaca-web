@@ -1,30 +1,48 @@
 ---
 import { showPackages } from '../utils/flags';
+import type { Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const en = lang === 'en';
 
 const questions = [
   {
     n: "01",
-    q: "¿Tu negocio necesita un software a la medida?",
-    a: "Sistemas de gestión, dashboards, integraciones, apps internas. Construyo la herramienta digital que tu equipo usa todos los días.",
-    cta: "Arranquemos por una llamada",
+    q: en ? "Does your business need custom software?" : "¿Tu negocio necesita un software a la medida?",
+    a: en
+      ? "Management systems, dashboards, integrations, internal apps. I build the digital tool your team uses every day."
+      : "Sistemas de gestión, dashboards, integraciones, apps internas. Construyo la herramienta digital que tu equipo usa todos los días.",
+    cta: en ? "Let's start with a call" : "Arranquemos por una llamada",
     href: "#contacto",
   },
   {
     n: "02",
-    q: "¿Tu landing actual tarda más de un mes en cerrar deals?",
-    a: "Sitio profesional en 2-3 semanas. Diseño, código, SEO básico y deploy. Vos lo mantenés o yo lo mantengo — vos decidís.",
-    cta: showPackages ? "Quiero mi landing" : "Hablemos por WhatsApp",
+    q: en ? "Is your current landing page taking over a month to close deals?" : "¿Tu landing actual tarda más de un mes en cerrar deals?",
+    a: en
+      ? "A professional site in 2-3 weeks. Design, code, basic SEO and deploy. You maintain it or I do — your call."
+      : "Sitio profesional en 2-3 semanas. Diseño, código, SEO básico y deploy. Vos lo mantenés o yo lo mantengo — vos decidís.",
+    cta: showPackages ? (en ? "I want my landing page" : "Quiero mi landing") : en ? "Let's talk on WhatsApp" : "Hablemos por WhatsApp",
     href: showPackages
       ? "#paquete-lanzar"
-      : "https://wa.me/50685082921?text=¡Hola, Jonathan! Quiero conversar sobre una landing page.",
+      : en
+        ? "https://wa.me/50685082921?text=Hi Jonathan! I'd like to talk about a landing page."
+        : "https://wa.me/50685082921?text=¡Hola, Jonathan! Quiero conversar sobre una landing page.",
     external: !showPackages,
   },
   {
     n: "03",
-    q: "¿Querés una app móvil pero no sabés por dónde empezar?",
-    a: "Apps Flutter en producción para Walmart, BCR y PriceSmart. Sé qué se rompe, qué dura y qué escala. Empezamos por la conversación.",
-    cta: "Hablemos de la app",
-    href: "https://wa.me/50685082921?text=¡Hola, Jonathan! Quiero hablar sobre una app móvil.",
+    q: en ? "Want a mobile app but not sure where to start?" : "¿Querés una app móvil pero no sabés por dónde empezar?",
+    a: en
+      ? "Flutter apps in production for Walmart, BCR and PriceSmart. I know what breaks, what lasts and what scales. We start with a conversation."
+      : "Apps Flutter en producción para Walmart, BCR y PriceSmart. Sé qué se rompe, qué dura y qué escala. Empezamos por la conversación.",
+    cta: en ? "Let's talk about the app" : "Hablemos de la app",
+    href: en
+      ? "https://wa.me/50685082921?text=Hi Jonathan! I'd like to talk about a mobile app."
+      : "https://wa.me/50685082921?text=¡Hola, Jonathan! Quiero hablar sobre una app móvil.",
     external: true,
   },
 ];
@@ -38,17 +56,21 @@ const questions = [
   <div class="container-x py-20 md:py-28">
     <div class="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16 mb-14 md:mb-20">
       <div class="reveal">
-        <div class="label mb-4">Caminos</div>
+        <div class="label mb-4">{en ? 'Paths' : 'Caminos'}</div>
         <h2 class="display-xl" style="color: var(--color-text);">
-          Tres preguntas.<br />
-          <span class="mark-accent">Tres caminos.</span>
+          {en ? 'Three questions.' : 'Tres preguntas.'}<br />
+          <span class="mark-accent">{en ? 'Three paths.' : 'Tres caminos.'}</span>
         </h2>
       </div>
       <p
         class="reveal reveal-d1 text-[1.0625rem] leading-relaxed self-end max-w-[58ch]"
         style="color: var(--color-text-mute);"
       >
-        Tres tipos de cliente, tres formas de empezar. Si te suena una de estas, ya sabés por dónde arrancamos.
+        {
+          en
+            ? 'Three kinds of clients, three ways to start. If one of these sounds familiar, you already know where we begin.'
+            : 'Tres tipos de cliente, tres formas de empezar. Si te suena una de estas, ya sabés por dónde arrancamos.'
+        }
       </p>
     </div>
 

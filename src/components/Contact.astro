@@ -1,29 +1,38 @@
 ---
-import type { Dict } from '../i18n/utils';
+import type { Dict, Lang } from '../i18n/utils';
 
 interface Props {
   t: Dict;
+  lang: Lang;
 }
 
-const { t } = Astro.props;
+const { lang } = Astro.props;
+const en = lang === 'en';
 ---
 
 <section id="contacto" class="border-b relative overflow-hidden" style="border-color: var(--color-line); background-color: var(--color-bg);">
   <div class="container-x py-20 md:py-28">
     <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16 lg:items-end">
       <div class="reveal">
-        <div class="label mb-5" style="color: var(--color-accent);">Próximo paso</div>
+        <div class="label mb-5" style="color: var(--color-accent);">{en ? 'Next step' : 'Próximo paso'}</div>
         <h2 class="display-mega" style="color: var(--color-text); font-size: clamp(2.5rem, 7vw, 5.5rem);">
-          ¿Hablamos<br />
-          de tu <span class="mark-accent">proyecto?</span>
+          {en ? "Let's talk" : '¿Hablamos'}<br />
+          {en ? 'about your ' : 'de tu '}<span class="mark-accent">{en ? 'project.' : 'proyecto?'}</span>
         </h2>
         <p class="mt-8 max-w-[52ch] text-[1.0625rem] leading-relaxed" style="color: var(--color-text-mute);">
-          Respondo en menos de 24 horas hábiles. Para algo rápido, WhatsApp. Para algo largo, email. <strong style="color: var(--color-text); font-weight: 600;">Mandá mensaje cuando quieras.</strong>
+          {
+            en
+              ? 'I reply within one business day. For something quick, WhatsApp. For something longer, email.'
+              : 'Respondo en menos de 24 horas hábiles. Para algo rápido, WhatsApp. Para algo largo, email.'
+          }{' '}
+          <strong style="color: var(--color-text); font-weight: 600;">{en ? 'Reach out anytime.' : 'Mandá mensaje cuando quieras.'}</strong>
         </p>
 
         <div class="mt-10 flex flex-wrap gap-3">
           <a
-            href="https://wa.me/50685082921?text=¡Hola, Jonathan! Vi tu sitio y quería conversar sobre un proyecto."
+            href={en
+              ? "https://wa.me/50685082921?text=Hi Jonathan! I saw your website and would like to talk about a project."
+              : "https://wa.me/50685082921?text=¡Hola, Jonathan! Vi tu sitio y quería conversar sobre un proyecto."}
             target="_blank"
             rel="noopener noreferrer"
             class="btn-wa"
@@ -41,7 +50,7 @@ const { t } = Astro.props;
 
       <aside class="reveal reveal-d1 lg:pb-2">
         <div class="surface p-7">
-          <div class="label mb-5">Datos</div>
+          <div class="label mb-5">{en ? 'Details' : 'Datos'}</div>
           <dl class="space-y-5">
             <div>
               <dt class="label mb-1.5">WhatsApp</dt>
@@ -62,7 +71,7 @@ const { t } = Astro.props;
               </dd>
             </div>
             <div>
-              <dt class="label mb-1.5">Ubicación</dt>
+              <dt class="label mb-1.5">{en ? 'Location' : 'Ubicación'}</dt>
               <dd class="text-[1.0625rem]" style="color: var(--color-text);">San José, Costa Rica · GMT-6</dd>
             </div>
           </dl>

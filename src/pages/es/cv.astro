@@ -4,24 +4,13 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import { useTranslations } from '../../i18n/utils';
 
-const lang = 'en' as const;
+const lang = 'es' as const;
 const t = useTranslations(lang);
 const cv = t.cv;
-const backHref = '/en/';
+const backHref = '/es/';
 
 const linkedinUrl = 'https://www.linkedin.com/in/xnjaca/';
 const linkedinLabel = 'linkedin.com/in/xnjaca';
-
-const ctaLabels = {
-  meta: 'CV',
-  location: 'Location',
-  email: 'Email',
-  whatsapp: 'WhatsApp',
-  linkedin: 'LinkedIn',
-  closingEyebrow: 'Looking for someone for your team or project?',
-  closingHeadline: "Let's talk",
-  closingBody: 'For something quick, WhatsApp. For something long, email or LinkedIn. Response within 24 business hours.',
-};
 ---
 
 <BaseLayout title={cv.pageTitle} description={cv.pageDescription} lang={lang}>
@@ -43,7 +32,7 @@ const ctaLabels = {
         {cv.back}
       </a>
 
-      <div class="label reveal mb-5" style="color: var(--color-accent);">{ctaLabels.meta} · {cv.role}</div>
+      <div class="label reveal mb-5" style="color: var(--color-accent);">CV · {cv.role}</div>
 
       <h1 class="reveal reveal-d1 display-mega" style="color: var(--color-text);">
         Jonathan<br />
@@ -52,23 +41,23 @@ const ctaLabels = {
 
       <div class="reveal reveal-d3 mt-10 grid gap-px md:grid-cols-2 lg:grid-cols-4 surface overflow-hidden">
         <div class="p-5">
-          <div class="label mb-2">{ctaLabels.location}</div>
+          <div class="label mb-2">Ubicación</div>
           <div class="text-[0.95rem] font-medium" style="color: var(--color-text);">{cv.contact.location}</div>
         </div>
         <div class="p-5">
-          <div class="label mb-2">{ctaLabels.email}</div>
+          <div class="label mb-2">Email</div>
           <a href={`mailto:${cv.contact.email}`} class="text-[0.95rem] font-medium hover:underline" style="color: var(--color-text);">
             {cv.contact.email}
           </a>
         </div>
         <div class="p-5">
-          <div class="label mb-2">{ctaLabels.whatsapp}</div>
+          <div class="label mb-2">WhatsApp</div>
           <a href="https://wa.me/50685082921" target="_blank" rel="noopener noreferrer" class="text-[0.95rem] font-medium tabular-nums hover:underline" style="color: var(--color-text);">
             {cv.contact.phone}
           </a>
         </div>
         <div class="p-5">
-          <div class="label mb-2">{ctaLabels.linkedin}</div>
+          <div class="label mb-2">LinkedIn</div>
           <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" class="text-[0.95rem] font-medium hover:underline inline-flex items-center gap-1.5" style="color: var(--color-text);">
             {linkedinLabel}
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
@@ -201,17 +190,17 @@ const ctaLabels = {
       <div class="surface p-8 md:p-12 reveal">
         <div class="grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:gap-12 lg:items-center">
           <div>
-            <div class="label mb-4">{ctaLabels.closingEyebrow}</div>
+            <div class="label mb-4">¿Te encaja para tu equipo o proyecto?</div>
             <h2 class="display-xl" style="color: var(--color-text); font-size: clamp(1.875rem, 3.6vw, 2.75rem);">
-              <span class="mark-accent">{ctaLabels.closingHeadline}</span>.
+              <span class="mark-accent">Hablemos</span>.
             </h2>
             <p class="mt-5 max-w-[52ch] text-[1rem] leading-relaxed" style="color: var(--color-text-mute);">
-              {ctaLabels.closingBody}
+              Para algo rápido, WhatsApp. Para algo largo, email o LinkedIn. Respondo en menos de 24 horas hábiles.
             </p>
           </div>
           <div class="flex flex-wrap gap-3 lg:justify-end">
             <a
-              href="https://wa.me/50685082921?text=Hi Jonathan! I saw your CV and would like to talk."
+              href="https://wa.me/50685082921?text=¡Hola, Jonathan! Vi tu CV y quería conversar."
               target="_blank"
               rel="noopener noreferrer"
               class="btn-wa"

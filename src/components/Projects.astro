@@ -7,46 +7,49 @@ interface Props {
 }
 
 const { t, lang } = Astro.props;
-const base = lang === 'es' ? '' : '/en';
+const base = lang === 'en' ? '' : '/es';
+const en = lang === 'en';
 
 const featured = [
   {
     key: 'acdemic',
-    label: 'Founder · activo',
+    label: en ? 'Founder · active' : 'Founder · activo',
     name: 'ACDEMIC',
-    tagline: 'SaaS EdTech para docentes del MEP',
+    tagline: en ? 'EdTech SaaS for public school teachers in Costa Rica' : 'SaaS EdTech para docentes del MEP',
     stack: ['NestJS', 'Angular', 'PostgreSQL', 'Flutter'],
     href: `${base}/projects/acdemic`,
   },
   {
     key: 'professionalConstruction',
-    label: 'Freelance · activo · dev + marca',
+    label: en ? 'Freelance · active · dev + brand' : 'Freelance · activo · dev + marca',
     name: 'Professional Construction',
-    tagline: 'Sitio y presencia digital para contratista de techos y remodelación en USA',
+    tagline: en
+      ? 'Website and digital presence for a roofing and remodeling contractor in the US'
+      : 'Sitio y presencia digital para contratista de techos y remodelación en USA',
     stack: ['Astro 5', 'TypeScript', 'Tailwind', 'Render'],
     href: `${base}/projects/professional-construction`,
   },
   {
     key: 'livingstoneContractors',
-    label: 'Freelance · activo · dev + marca',
+    label: en ? 'Freelance · active · dev + brand' : 'Freelance · activo · dev + marca',
     name: 'Living Stone Contractors',
-    tagline: 'Sitio + panel admin para gestionar contenido',
+    tagline: en ? 'Website + admin panel to manage content' : 'Sitio + panel admin para gestionar contenido',
     stack: ['Astro', 'Express', 'PostgreSQL', 'Cloudinary'],
     href: `${base}/projects/livingstone-contractors`,
   },
   {
     key: 'netfic',
-    label: 'Dev lead · activo',
+    label: en ? 'Dev lead · active' : 'Dev lead · activo',
     name: 'NetFic Solutions',
-    tagline: 'Empresa de servicios tecnológicos · infra + dev',
+    tagline: en ? 'Technology services company · infra + dev' : 'Empresa de servicios tecnológicos · infra + dev',
     stack: ['Astro 5', 'TypeScript', 'Tailwind', 'Render'],
     href: `${base}/projects/netfic`,
   },
   {
     key: 'walmart',
-    label: 'Contract · vía IDS · dic 2025 — may 2026',
+    label: en ? 'Contract · via IDS · Dec 2025 — May 2026' : 'Contract · vía IDS · dic 2025 — may 2026',
     name: 'Walmart',
-    tagline: 'App móvil Flutter en producción · LATAM',
+    tagline: en ? 'Flutter mobile app in production · LATAM' : 'App móvil Flutter en producción · LATAM',
     stack: ['Flutter', 'Dart', 'VTEX', 'SauceLabs'],
     confidential: true,
   },
@@ -54,13 +57,23 @@ const featured = [
     key: 'bcr',
     label: 'Contract · 2023 — 2025',
     name: 'Banco de Costa Rica',
-    tagline: 'Rediseño de app móvil bancaria',
+    tagline: en ? 'Mobile banking app redesign' : 'Rediseño de app móvil bancaria',
     stack: ['Flutter', 'Dart', 'Azure DevOps', 'AWS'],
     confidential: true,
   },
 ];
 
 const inProgress = [
+  {
+    name: 'Sun State Roofing',
+    label: lang === 'es' ? 'Propuesta · en curso' : 'Proposal · in progress',
+    tagline:
+      lang === 'es'
+        ? 'Demo 3D de recubrimiento de techos con vista de cámara térmica y sus lecturas reales, para un contratista en Florida.'
+        : 'A 3D roof coating demo with a thermal camera view and their real readings, for a roofing contractor in Florida.',
+    stack: ['Astro', 'Three.js', 'WebGL', 'Vercel'],
+    links: [{ label: lang === 'es' ? 'Ver demo' : 'View demo', href: 'https://sun-state-roofing.vercel.app' }],
+  },
   {
     name: '844Roofing.com',
     label: lang === 'es' ? 'Propuesta · en curso' : 'Proposal · in progress',
@@ -104,17 +117,21 @@ const inProgress = [
   <div class="container-x py-20 md:py-28">
     <div class="grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-16 mb-14 md:mb-20">
       <div class="reveal">
-        <div class="label mb-4">Trabajo reciente</div>
+        <div class="label mb-4">{en ? 'Recent work' : 'Trabajo reciente'}</div>
         <h2 class="display-xl" style="color: var(--color-text);">
-          Productos propios.<br />
-          Contratos <span class="mark-accent">enterprise</span>.
+          {en ? 'My own products.' : 'Productos propios.'}<br />
+          {en ? '' : 'Contratos '}<span class="mark-accent">{en ? 'Enterprise' : 'enterprise'}</span>{en ? ' contracts.' : '.'}
         </h2>
       </div>
       <p
         class="reveal reveal-d1 text-[1.0625rem] leading-relaxed self-end max-w-[58ch]"
         style="color: var(--color-text-mute);"
       >
-        Selección de proyectos. Los marcados con flecha tienen caso de estudio; los demás se mencionan por NDA.
+        {
+          en
+            ? 'A selection of projects. Those marked with an arrow have a case study; the rest are mentioned under NDA.'
+            : 'Selección de proyectos. Los marcados con flecha tienen caso de estudio; los demás se mencionan por NDA.'
+        }
       </p>
     </div>
 
@@ -181,7 +198,7 @@ const inProgress = [
         <span class="label">{lang === 'es' ? 'Demos en vivo' : 'Live demos'}</span>
       </div>
 
-      <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <div class="grid gap-4 md:grid-cols-2">
         {inProgress.map((p, i) => (
           <article class={`surface flex flex-col gap-6 px-7 md:px-9 py-9 reveal reveal-d${i + 1}`}>
             <div>
@@ -239,7 +256,7 @@ const inProgress = [
         class="group inline-flex items-baseline gap-3 font-display font-bold transition-opacity hover:opacity-70"
         style="font-size: clamp(1.5rem, 2.5vw, 2rem); letter-spacing: -0.03em; color: var(--color-text);"
       >
-        Ver todos los proyectos
+        {en ? 'View all projects' : 'Ver todos los proyectos'}
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="self-center transition-transform duration-300 group-hover:translate-x-1" style="color: var(--color-accent);">
           <line x1="5" y1="12" x2="19" y2="12"></line>
           <polyline points="12 5 19 12 12 19"></polyline>

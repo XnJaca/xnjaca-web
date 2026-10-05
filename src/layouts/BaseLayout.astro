@@ -24,11 +24,11 @@ const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
 
 const rawPath = Astro.url.pathname;
 let cleanPath = rawPath;
-if (rawPath.startsWith('/en/')) cleanPath = rawPath.slice(3);
-else if (rawPath === '/en') cleanPath = '/';
+if (rawPath.startsWith('/es/')) cleanPath = rawPath.slice(3);
+else if (rawPath === '/es') cleanPath = '/';
 
-const esUrl = `${site}${cleanPath}`;
-const enUrl = cleanPath === '/' ? `${site}/en/` : `${site}/en${cleanPath}`;
+const enUrl = `${site}${cleanPath}`;
+const esUrl = cleanPath === '/' ? `${site}/es/` : `${site}/es${cleanPath}`;
 const canonicalUrl = lang === 'es' ? esUrl : enUrl;
 const ogImageUrl = ogImage ?? `${site}/og.png`;
 
@@ -67,7 +67,7 @@ const personSchema = {
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" hreflang="es" href={esUrl} />
     <link rel="alternate" hreflang="en" href={enUrl} />
-    <link rel="alternate" hreflang="x-default" href={esUrl} />
+    <link rel="alternate" hreflang="x-default" href={enUrl} />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />

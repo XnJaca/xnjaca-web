@@ -13,25 +13,25 @@ import Footer from '../../components/Footer.astro';
 import { useTranslations } from '../../i18n/utils';
 import { showPackages } from '../../utils/flags';
 
-const lang = 'en' as const;
+const lang = 'es' as const;
 const t = useTranslations(lang);
 ---
 
 <BaseLayout
-  title="Jonathan Cruz · Custom software for your business"
-  description="I build custom software for companies, founders and entrepreneurs in Costa Rica. Mobile apps, websites and systems with solid architecture. WhatsApp direct."
+  title="Jonathan Cruz · Software a medida para tu negocio"
+  description="Construyo software a medida para empresas, founders y emprendedores en Costa Rica. Apps móviles, sitios web y sistemas con arquitectura sólida. WhatsApp directo."
   lang={lang}
 >
   <Nav lang={lang} t={t} />
   <main>
-    <Hero t={t} />
-    <TrustStrip />
-    <QuestionCTAs />
-    {showPackages && <Packages t={t} />}
+    <Hero t={t} lang={lang} />
+    <TrustStrip lang={lang} />
+    <QuestionCTAs lang={lang} />
+    {showPackages && <Packages t={t} lang={lang} />}
     <Projects t={t} lang={lang} />
-    <Process />
+    <Process lang={lang} />
     <About t={t} lang={lang} />
-    <Contact t={t} />
+    <Contact t={t} lang={lang} />
   </main>
   <Footer t={t} lang={lang} />
 </BaseLayout>

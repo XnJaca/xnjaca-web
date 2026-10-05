@@ -1,5 +1,77 @@
 ---
-const packages = [
+import type { Dict, Lang } from '../i18n/utils';
+
+interface Props {
+  t?: Dict;
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const en = lang === 'en';
+
+const packages = en
+  ? [
+  {
+    id: "lanzar",
+    name: "Launch",
+    price: "$600",
+    priceLabel: "Starting at · before tax",
+    delivery: "2-3 wk",
+    headline: "Professional landing page",
+    body: "You have an idea and need an online presence now. Responsive site, basic SEO, hosting and domain included.",
+    features: [
+      "Custom multi-section landing page",
+      "Responsive + basic SEO",
+      "Domain and hosting included",
+      "Delivered in 2-3 weeks",
+    ],
+    cta: "I want my landing page",
+    href: "https://wa.me/50685082921?text=Hi Jonathan! I'm interested in the Launch package.",
+    highlighted: false,
+  },
+  {
+    id: "crecer",
+    name: "Grow",
+    price: "$1,500",
+    priceLabel: "Starting at · before tax",
+    delivery: "4-8 wk",
+    headline: "Full website or mobile app",
+    body: "Your business is already running. You need a multi-page website with a CMS or a mobile app with a backend. 1 month of support included.",
+    features: [
+      "Multi-page website + CMS, or mobile app (Flutter)",
+      "Node backend if the app needs it",
+      "SEO + analytics",
+      "1 month of post-delivery support",
+      "Delivered in 4-8 weeks",
+    ],
+    cta: "Let's talk about Grow",
+    href: "https://wa.me/50685082921?text=Hi Jonathan! I'm interested in the Grow package.",
+    highlighted: true,
+    badge: "Most popular",
+  },
+  {
+    id: "escalar",
+    name: "Scale",
+    price: "Custom quote",
+    priceLabel: "Tailored pricing",
+    delivery: "Based on scope",
+    headline: "Serious product + modern integrations",
+    body: "When the project grows and needs real architecture. A web or mobile app with a backend, AI integrations, real-time features and everything a serious product needs to scale.",
+    features: [
+      "Complete web or mobile app with a custom backend",
+      "AI integrations: LLMs, RAG, agents, embeddings",
+      "Real time with websockets + live updates",
+      "Online payments (Stripe, SINPE, PayPal)",
+      "Auth, admin panels, multi-tenancy",
+      "Clean architecture · SOLID · DRY · CI/CD",
+      "3 months of post-delivery support",
+    ],
+    cta: "Let's talk scope",
+    href: "https://wa.me/50685082921?text=Hi Jonathan! I'd like to talk about a custom project (Scale).",
+    highlighted: false,
+  },
+]
+  : [
   {
     id: "lanzar",
     name: "Lanzar",
@@ -66,17 +138,21 @@ const packages = [
   <div class="container-x py-20 md:py-28">
     <div class="grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-16 mb-14 md:mb-20">
       <div class="reveal">
-        <div class="label mb-4">Paquetes · precio claro de entrada</div>
+        <div class="label mb-4">{en ? 'Packages · clear starting prices' : 'Paquetes · precio claro de entrada'}</div>
         <h2 class="display-xl" style="color: var(--color-text);">
-          Tres caminos.<br />
-          Cero <span class="mark-accent">sorpresas</span> en la factura.
+          {en ? 'Three paths.' : 'Tres caminos.'}<br />
+          {en ? 'Zero ' : 'Cero '}<span class="mark-accent">{en ? 'surprises' : 'sorpresas'}</span>{en ? ' on the invoice.' : ' en la factura.'}
         </h2>
       </div>
       <p
         class="reveal reveal-d1 text-[1.0625rem] leading-relaxed self-end max-w-[52ch]"
         style="color: var(--color-text-mute);"
       >
-        Precios de entrada. Lo que cambia es el alcance — y eso lo definimos antes de tocar código. Soporte post-entrega incluido en los dos paquetes mayores.
+        {
+          en
+            ? 'Starting prices. What changes is the scope — and we define that before writing any code. Post-delivery support included in the two larger packages.'
+            : 'Precios de entrada. Lo que cambia es el alcance — y eso lo definimos antes de tocar código. Soporte post-entrega incluido en los dos paquetes mayores.'
+        }
       </p>
     </div>
 
@@ -185,7 +261,7 @@ const packages = [
     </div>
 
     <p class="mt-10 text-[0.85rem] text-center reveal" style="color: var(--color-text-mute);">
-      ¿Necesitás algo distinto? <a href="https://wa.me/50685082921" target="_blank" rel="noopener noreferrer" class="underline" style="color: var(--color-accent);">Hablemos por WhatsApp</a> y armamos algo a medida.
+      {en ? 'Need something different?' : '¿Necesitás algo distinto?'} <a href="https://wa.me/50685082921" target="_blank" rel="noopener noreferrer" class="underline" style="color: var(--color-accent);">{en ? "Let's talk on WhatsApp" : 'Hablemos por WhatsApp'}</a> {en ? "and we'll put together something custom." : 'y armamos algo a medida.'}
     </p>
   </div>
 </section>

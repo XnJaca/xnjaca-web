@@ -1,6 +1,15 @@
 ---
+import type { Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const en = lang === 'en';
+
 const clients = [
-  "Walmart vía IDS",
+  en ? "Walmart via IDS" : "Walmart vía IDS",
   "Banco de Costa Rica",
   "PriceSmart",
   "ACDEMIC",
@@ -15,11 +24,11 @@ const items = [...clients, ...clients];
 <section
   class="border-y"
   style="border-color: var(--color-line); background-color: var(--color-surface);"
-  aria-label="Trabajo con empresas"
+  aria-label={en ? 'Companies I work with' : 'Trabajo con empresas'}
 >
   <div class="container-x py-5 md:py-6 grid gap-6 md:grid-cols-[auto_1fr] md:items-center">
     <div class="label shrink-0" style="color: var(--color-text-mute);">
-      Trabajo / he trabajado con
+      {en ? 'Working / have worked with' : 'Trabajo / he trabajado con'}
     </div>
     <div class="marquee">
       <div class="marquee-track">

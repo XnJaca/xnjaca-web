@@ -4,22 +4,22 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import { useTranslations } from '../../../i18n/utils';
 
-const lang = 'en' as const;
+const lang = 'es' as const;
 const t = useTranslations(lang);
 const idx = t.projectPages.index;
 const items = t.projects.items;
 
 const entries = [
-  { key: 'acdemic' as const, data: items.acdemic, caseStudyHref: '/en/projects/acdemic' as const },
-  { key: 'professionalConstruction' as const, data: items.professionalConstruction, caseStudyHref: '/en/projects/professional-construction' as const },
-  { key: 'livingstoneContractors' as const, data: items.livingstoneContractors, caseStudyHref: '/en/projects/livingstone-contractors' as const },
-  { key: 'netfic' as const, data: items.netfic, caseStudyHref: '/en/projects/netfic' as const },
+  { key: 'acdemic' as const, data: items.acdemic, caseStudyHref: '/es/projects/acdemic' as const },
+  { key: 'professionalConstruction' as const, data: items.professionalConstruction, caseStudyHref: '/es/projects/professional-construction' as const },
+  { key: 'livingstoneContractors' as const, data: items.livingstoneContractors, caseStudyHref: '/es/projects/livingstone-contractors' as const },
+  { key: 'netfic' as const, data: items.netfic, caseStudyHref: '/es/projects/netfic' as const },
   { key: 'walmart' as const, data: items.walmart, confidential: true },
   { key: 'bcr' as const, data: items.bcr, confidential: true },
   { key: 'priceSmart' as const, data: items.priceSmart, confidential: true },
 ];
 
-const backHref = '/en/';
+const backHref = '/es/';
 const total = entries.length;
 const caseStudyCount = entries.filter((e) => 'caseStudyHref' in e).length;
 const ndaCount = entries.filter((e) => 'confidential' in e).length;
@@ -50,8 +50,8 @@ const ndaCount = entries.filter((e) => 'confidential' in e).length;
             {idx.sectionNumber}
           </div>
           <h1 class="reveal reveal-d1 display-mega" style="color: var(--color-text);">
-            Recent work,<br />
-            in <span class="mark-accent">detail</span>.
+            Trabajo reciente,<br />
+            en <span class="mark-accent">detalle</span>.
           </h1>
           <p class="reveal reveal-d2 mt-8 max-w-[58ch]" style="font-size: 1.125rem; line-height: 1.55; color: var(--color-text-mute);">
             {idx.description}
@@ -71,7 +71,7 @@ const ndaCount = entries.filter((e) => 'confidential' in e).length;
               </div>
               <div>
                 <div class="font-display tabular-nums leading-none" style="font-size: 2rem; letter-spacing: -0.04em; color: var(--color-gold);">{ndaCount}</div>
-                <div class="mt-2 label">under NDA</div>
+                <div class="mt-2 label">bajo NDA</div>
               </div>
             </div>
           </div>
@@ -158,17 +158,17 @@ const ndaCount = entries.filter((e) => 'confidential' in e).length;
       <div class="surface p-8 md:p-12 reveal">
         <div class="grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:gap-12 lg:items-center">
           <div>
-            <div class="label mb-4">Interested in any of these?</div>
+            <div class="label mb-4">¿Te interesa algo de esto?</div>
             <h2 class="display-xl" style="color: var(--color-text); font-size: clamp(1.875rem, 3.6vw, 2.75rem);">
-              Let's talk about your <span class="mark-accent">project</span>.
+              Hablemos de tu <span class="mark-accent">proyecto</span>.
             </h2>
             <p class="mt-5 max-w-[52ch] text-[1rem] leading-relaxed" style="color: var(--color-text-mute);">
-              Quote via WhatsApp or email. Response within 24 business hours.
+              Cotización por WhatsApp o email. Respondo en menos de 24 horas hábiles.
             </p>
           </div>
           <div class="flex flex-wrap gap-3 lg:justify-end">
             <a
-              href="https://wa.me/50685082921?text=Hi Jonathan! I saw your projects and would like to talk."
+              href="https://wa.me/50685082921?text=¡Hola, Jonathan! Vi tus proyectos y quería conversar."
               target="_blank"
               rel="noopener noreferrer"
               class="btn-wa"

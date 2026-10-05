@@ -7,8 +7,9 @@ interface Props {
   lang?: Lang;
 }
 
-const { t, lang = 'es' } = Astro.props;
-const base = lang === 'es' ? '' : '/en';
+const { t, lang = 'en' } = Astro.props;
+const en = lang === 'en';
+const base = lang === 'en' ? '' : '/es';
 const year = new Date().getFullYear();
 ---
 
@@ -27,25 +28,29 @@ const year = new Date().getFullYear();
           class="mt-5 max-w-[42ch] text-[0.95rem] leading-relaxed"
           style="color: var(--color-text-mute);"
         >
-          Desarrollador full-stack en Costa Rica. Apps móviles, web y sistemas a medida para empresas, founders y emprendedores.
+          {
+            en
+              ? 'Full-stack developer in Costa Rica. Mobile apps, websites and custom systems for companies, founders and entrepreneurs.'
+              : 'Desarrollador full-stack en Costa Rica. Apps móviles, web y sistemas a medida para empresas, founders y emprendedores.'
+          }
         </p>
       </div>
 
       <div class="grid gap-10 sm:grid-cols-3">
         <div>
-          <div class="label mb-5">Navegación</div>
+          <div class="label mb-5">{en ? 'Navigation' : 'Navegación'}</div>
           <ul class="space-y-3">
-            <li><a href={`${base}/#caminos`} class="text-[0.9rem] hover:underline" style="color: var(--color-text);">Caminos</a></li>
+            <li><a href={`${base}/#caminos`} class="text-[0.9rem] hover:underline" style="color: var(--color-text);">{en ? 'Paths' : 'Caminos'}</a></li>
             {showPackages && (
-              <li><a href={`${base}/#paquetes`} class="text-[0.9rem] hover:underline" style="color: var(--color-text);">Paquetes</a></li>
+              <li><a href={`${base}/#paquetes`} class="text-[0.9rem] hover:underline" style="color: var(--color-text);">{en ? 'Packages' : 'Paquetes'}</a></li>
             )}
-            <li><a href={`${base}/#proyectos`} class="text-[0.9rem] hover:underline" style="color: var(--color-text);">Proyectos</a></li>
-            <li><a href={`${base}/#contacto`} class="text-[0.9rem] hover:underline" style="color: var(--color-text);">Contacto</a></li>
-            <li><a href={`${base}/cv`} class="text-[0.9rem] hover:underline" style="color: var(--color-text);">CV completo</a></li>
+            <li><a href={`${base}/#proyectos`} class="text-[0.9rem] hover:underline" style="color: var(--color-text);">{en ? 'Projects' : 'Proyectos'}</a></li>
+            <li><a href={`${base}/#contacto`} class="text-[0.9rem] hover:underline" style="color: var(--color-text);">{en ? 'Contact' : 'Contacto'}</a></li>
+            <li><a href={`${base}/cv`} class="text-[0.9rem] hover:underline" style="color: var(--color-text);">{en ? 'Full resume' : 'CV completo'}</a></li>
           </ul>
         </div>
         <div>
-          <div class="label mb-5">Contacto</div>
+          <div class="label mb-5">{en ? 'Contact' : 'Contacto'}</div>
           <ul class="space-y-3">
             <li>
               <a href="https://wa.me/50685082921" target="_blank" rel="noopener noreferrer" class="text-[0.9rem] hover:underline tabular-nums" style="color: var(--color-text);">
@@ -65,7 +70,7 @@ const year = new Date().getFullYear();
           </ul>
         </div>
         <div>
-          <div class="label mb-5">Producto</div>
+          <div class="label mb-5">{en ? 'Product' : 'Producto'}</div>
           <ul class="space-y-3">
             <li>
               <a href="https://acdemic.com" target="_blank" rel="noopener noreferrer" class="text-[0.9rem] hover:underline inline-flex items-center gap-1.5" style="color: var(--color-gold);">

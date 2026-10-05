@@ -12,7 +12,7 @@ export default defineConfig({
     react(),
     sitemap({
       i18n: {
-        defaultLocale: 'es',
+        defaultLocale: 'en',
         locales: {
           es: 'es-CR',
           en: 'en-US',
@@ -21,7 +21,7 @@ export default defineConfig({
     }),
   ],
   i18n: {
-    defaultLocale: 'es',
+    defaultLocale: 'en',
     locales: ['es', 'en'],
     routing: {
       prefixDefaultLocale: false,

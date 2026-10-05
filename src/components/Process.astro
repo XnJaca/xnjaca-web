@@ -1,5 +1,37 @@
 ---
-const steps = [
+import type { Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const en = lang === 'en';
+
+const steps = en
+  ? [
+      {
+        n: "01",
+        title: "Conversation",
+        body: "Before touching code, we understand what your business needs. One call to learn the real problem: what you solve, for whom, and what counts as success. If I'm not the right fit, I'll tell you right away.",
+      },
+      {
+        n: "02",
+        title: "Prototype",
+        body: "A clickable version fast, before investing weeks. Mockups or a working prototype to validate direction. We iterate until the what is clear. This saves costly changes later.",
+      },
+      {
+        n: "03",
+        title: "Development",
+        body: "I show you progress, not just the final result. Visible, steady updates throughout. Your feedback at any time. If something falls outside scope, we talk about it before moving on.",
+      },
+      {
+        n: "04",
+        title: "Delivery + support",
+        body: "A product in production, documented, and 100% yours. Deploy, documentation and a technical walkthrough. The code is yours from day one. Post-delivery support in the Grow and Scale packages.",
+      },
+    ]
+  : [
   {
     n: "01",
     title: "Conversación",
@@ -20,24 +52,28 @@ const steps = [
     title: "Entrega + soporte",
     body: "Producto en producción, documentado, y 100% tuyo. Deploy, documentación y walkthrough técnico. El código es tuyo desde día uno. Soporte post-entrega en los paquetes Crecer y Escalar.",
   },
-];
+    ];
 ---
 
 <section id="proceso" class="border-b" style="border-color: var(--color-line); background-color: var(--color-surface);">
   <div class="container-x py-20 md:py-28">
     <div class="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-16 mb-14 md:mb-20">
       <div class="reveal">
-        <div class="label mb-4">Cómo trabajo</div>
+        <div class="label mb-4">{en ? 'How I work' : 'Cómo trabajo'}</div>
         <h2 class="display-xl" style="color: var(--color-text);">
-          Un proceso que respeta<br />
-          tu <span class="mark-accent">tiempo</span> y tu plata.
+          {en ? 'A process that respects' : 'Un proceso que respeta'}<br />
+          {en ? 'your ' : 'tu '}<span class="mark-accent">{en ? 'time' : 'tiempo'}</span>{en ? ' and your money.' : ' y tu plata.'}
         </h2>
       </div>
       <p
         class="reveal reveal-d1 text-[1.0625rem] leading-relaxed self-end max-w-[52ch]"
         style="color: var(--color-text-mute);"
       >
-        Cuatro pasos. Cero sorpresas. Antes de empezar sabés qué se entrega, cuándo y qué cuesta. Después, mantenimiento opcional.
+        {
+          en
+            ? 'Four steps. Zero surprises. Before we start you know what gets delivered, when, and what it costs. After that, optional maintenance.'
+            : 'Cuatro pasos. Cero sorpresas. Antes de empezar sabés qué se entrega, cuándo y qué cuesta. Después, mantenimiento opcional.'
+        }
       </p>
     </div>
 

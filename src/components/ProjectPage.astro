@@ -32,9 +32,12 @@ interface Props {
 
 const { project, lang, t } = Astro.props;
 const labels = t.projectPages;
-const backHref = lang === 'es' ? '/projects/' : '/en/projects/';
+const en = lang === 'en';
+const backHref = lang === 'en' ? '/projects/' : '/es/projects/';
 const waMessage = encodeURIComponent(
-  `¡Hola, Jonathan! Vi el caso de estudio de ${project.name} y quería conversar.`,
+  en
+    ? `Hi Jonathan! I saw the ${project.name} case study and would like to talk.`
+    : `¡Hola, Jonathan! Vi el caso de estudio de ${project.name} y quería conversar.`,
 );
 const waHref = `https://wa.me/50685082921?text=${waMessage}`;
 
@@ -107,7 +110,7 @@ const hasRoadmap = project.roadmap.length > 0;
               rel="noopener noreferrer"
               class="btn-ghost"
             >
-              Conversemos por WhatsApp
+              {en ? "Let's talk on WhatsApp" : 'Conversemos por WhatsApp'}
             </a>
           </div>
         </div>
@@ -149,9 +152,9 @@ const hasRoadmap = project.roadmap.length > 0;
       <div class="container-x py-16 md:py-24">
         <div class="grid gap-10 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
           <div class="reveal">
-            <div class="label mb-4">01 · El contexto</div>
+            <div class="label mb-4">{en ? '01 · The context' : '01 · El contexto'}</div>
             <h2 class="display-xl" style="color: var(--color-text); font-size: clamp(1.875rem, 3.5vw, 3rem);">
-              ¿Qué es y para <span class="mark-accent">quién?</span>
+              {en ? 'What it is and ' : '¿Qué es y para '}<span class="mark-accent">{en ? 'who it serves.' : 'quién?'}</span>
             </h2>
           </div>
           <p class="reveal reveal-d1 text-[1.0625rem] md:text-[1.125rem] leading-relaxed self-end max-w-[60ch]" style="color: var(--color-text);">
@@ -164,9 +167,9 @@ const hasRoadmap = project.roadmap.length > 0;
     <section class="container-x py-16 md:py-24">
       <div class="grid gap-12 lg:grid-cols-[1.6fr_1fr] lg:gap-16">
         <div class="reveal">
-          <div class="label mb-4">02 · El problema</div>
+          <div class="label mb-4">{en ? '02 · The problem' : '02 · El problema'}</div>
           <h2 class="display-xl" style="color: var(--color-text);">
-            Lo que está <span class="mark-accent">roto</span>.
+            {en ? "What's " : 'Lo que está '}<span class="mark-accent">{en ? 'broken' : 'roto'}</span>.
           </h2>
           <p class="mt-8 text-[1.0625rem] leading-relaxed max-w-[58ch]" style="color: var(--color-text-mute);">
             {project.problem}
@@ -203,9 +206,9 @@ const hasRoadmap = project.roadmap.length > 0;
       <div class="container-x py-16 md:py-24">
         <div class="grid gap-10 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
           <div class="reveal">
-            <div class="label mb-4">03 · Mi rol</div>
+            <div class="label mb-4">{en ? '03 · My role' : '03 · Mi rol'}</div>
             <h2 class="display-xl" style="color: var(--color-text); font-size: clamp(1.875rem, 3.5vw, 3rem);">
-              Qué <span class="mark-accent">hice</span>.
+              {en ? 'What I ' : 'Qué '}<span class="mark-accent">{en ? 'did' : 'hice'}</span>.
             </h2>
           </div>
           <p class="reveal reveal-d1 text-[1.0625rem] leading-relaxed self-end max-w-[60ch]" style="color: var(--color-text);">
@@ -217,9 +220,9 @@ const hasRoadmap = project.roadmap.length > 0;
 
     <section class="container-x py-16 md:py-24">
       <div class="mb-12 md:mb-16 reveal">
-        <div class="label mb-4">04 · La solución</div>
+        <div class="label mb-4">{en ? '04 · The solution' : '04 · La solución'}</div>
         <h2 class="display-xl max-w-[20ch]" style="color: var(--color-text);">
-          Qué <span class="mark-accent">construí</span> exactamente.
+          {en ? 'What exactly I ' : 'Qué '}<span class="mark-accent">{en ? 'built' : 'construí'}</span>{en ? '.' : ' exactamente.'}
         </h2>
       </div>
       <ol class="grid gap-x-12 gap-y-7 md:grid-cols-2 max-w-[1100px]">
@@ -240,9 +243,9 @@ const hasRoadmap = project.roadmap.length > 0;
     <section class="border-y" style="border-color: var(--color-line); background-color: var(--color-surface);">
       <div class="container-x py-16 md:py-24">
         <div class="mb-10 md:mb-14 reveal">
-          <div class="label mb-4">05 · Stack & arquitectura</div>
+          <div class="label mb-4">{en ? '05 · Stack & architecture' : '05 · Stack & arquitectura'}</div>
           <h2 class="display-xl max-w-[18ch]" style="color: var(--color-text);">
-            Con <span class="mark-accent">qué</span>.
+            {en ? 'Built ' : 'Con '}<span class="mark-accent">{en ? 'with' : 'qué'}</span>.
           </h2>
         </div>
         <div class="surface overflow-hidden reveal reveal-d1" style="background-color: var(--color-bg);">
@@ -267,9 +270,9 @@ const hasRoadmap = project.roadmap.length > 0;
       <section class="container-x py-16 md:py-24">
         <div class="flex items-baseline justify-between gap-4 mb-10 md:mb-14 reveal">
           <div>
-            <div class="label mb-4">06 · Capturas</div>
+            <div class="label mb-4">{en ? '06 · Screenshots' : '06 · Capturas'}</div>
             <h2 class="display-xl" style="color: var(--color-text); font-size: clamp(1.875rem, 3.5vw, 3rem);">
-              Cómo se <span class="mark-accent">ve</span>.
+              {en ? 'How it ' : 'Cómo se '}<span class="mark-accent">{en ? 'looks' : 've'}</span>.
             </h2>
           </div>
           <div data-counter class="label tabular-nums shrink-0">
@@ -376,7 +379,7 @@ const hasRoadmap = project.roadmap.length > 0;
           <div class="mb-10 md:mb-14 reveal">
             <div class="label mb-4">07 · Roadmap</div>
             <h2 class="display-xl max-w-[20ch]" style="color: var(--color-text);">
-              Hacia <span class="mark-accent">dónde</span> va.
+              {en ? 'Where it ' : 'Hacia '}<span class="mark-accent">{en ? 'goes next' : 'dónde'}</span>{en ? '.' : ' va.'}
             </h2>
           </div>
           <ol class="flex flex-col gap-8 md:gap-10 max-w-3xl">
@@ -419,12 +422,12 @@ const hasRoadmap = project.roadmap.length > 0;
       <div class="surface p-8 md:p-12 reveal">
         <div class="grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:gap-12 lg:items-center">
           <div>
-            <div class="label mb-4">¿Querés algo parecido?</div>
+            <div class="label mb-4">{en ? 'Want something similar?' : '¿Querés algo parecido?'}</div>
             <h2 class="display-xl" style="color: var(--color-text); font-size: clamp(1.875rem, 3.6vw, 2.75rem);">
-              Hablemos del <span class="mark-accent">tuyo</span>.
+              {en ? "Let's talk about " : 'Hablemos del '}<span class="mark-accent">{en ? 'yours' : 'tuyo'}</span>.
             </h2>
             <p class="mt-5 max-w-[52ch] text-[1rem] leading-relaxed" style="color: var(--color-text-mute);">
-              Cotización rápida por WhatsApp o email. Respondo en menos de 24 horas hábiles.
+              {en ? 'Quick quote via WhatsApp or email. I reply within one business day.' : 'Cotización rápida por WhatsApp o email. Respondo en menos de 24 horas hábiles.'}
             </p>
           </div>
           <div class="flex flex-wrap gap-3 lg:justify-end">
@@ -440,8 +443,8 @@ const hasRoadmap = project.roadmap.length > 0;
               WhatsApp
             </a>
             {showPackages && (
-              <a href={lang === 'es' ? '/#paquetes' : '/en/#paquetes'} class="btn-ghost">
-                Ver paquetes
+              <a href={lang === 'en' ? '/#paquetes' : '/es/#paquetes'} class="btn-ghost">
+                {en ? 'See packages' : 'Ver paquetes'}
               </a>
             )}
           </div>
